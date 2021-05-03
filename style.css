@@ -1,0 +1,581 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: DevilBreezeBold;
+    src: url("DevilBreezeBold.ttf");
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #0b0b0b;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.btn-padrao{
+    padding: 15px 25px 15px 25px;
+    border: none;
+    border-radius: 30px;
+    font-size: 25px;
+    background-color: #1DB954;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 2px 2px 3px #191414;
+    -webkit-transition: 0.5s;
+}
+
+.btn-padrao:hover{
+    box-shadow: 4px 4px 6px #191414;
+}
+
+/* HEADER */
+
+#header{
+    width: 100%;
+    padding: 20px 50px 20px 50px;
+    position: fixed;
+    color: #fff;
+    font-family: DevilBreezeBold;
+    z-index: 2;
+    display: block;
+    transition: top 0.3s;
+}
+
+.header ul{
+    float: right;
+    margin-right: 50px;
+    margin-top: 25px;
+}
+
+.header ul li{
+    display: inline-block;
+    list-style: none;
+    margin-right: 20px;
+    font-size: 20px;
+    -webkit-transition: 0.5s;
+}
+
+.header ul li:hover{
+    filter: invert(0.3) sepia(1) saturate(10);
+}
+
+.header ul li a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.header .logo{
+    width: 150px;
+    -webkit-transition: 0.5s;
+}
+
+.header .logo:hover{
+    filter: invert(0.3) sepia(1) saturate(10);
+    transform: scale(1.05);
+}
+
+/* FIM HEADER */
+
+/* BANNER */
+
+.banner{
+    height: 900px;
+}
+
+.banner-noticia{
+    height: 500px;
+}
+
+.banner-noticia .banner-img{
+    z-index: -1;
+    width: 100%;
+    object-fit:contain;
+    position: absolute;
+    background-repeat: no-repeat; 
+    background-size: 100%;
+    
+}
+
+.banner .banner-img{
+    z-index: -1;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    background-repeat: no-repeat; 
+    background-size: 100%;
+    
+}
+
+.ouvintes{
+    width: 100%;
+    text-align: center;
+    padding-top: 200px;    
+}
+
+.ouvintes2{
+    width: 100%;
+    text-align: center;
+    padding-top: 200px; 
+}
+
+
+.ouvintes h1{
+    font-family: DevilBreezeBold;
+    color: #fff;
+    font-size: 50px;
+    text-shadow: 3px 3px 3px #191414;
+}
+
+.ouvintes2 h1{
+    font-family: DevilBreezeBold;
+    font-size: 50px;
+    text-shadow: 3px 3px 3px #191414;
+    color: #a06d00;
+}
+
+.ouvintes h3{
+    font-family: DevilBreezeBold;
+    color: #fff;
+    font-size: 40px;
+    text-shadow: 3px 3px 3px #191414;
+}
+
+.ouvintes2 h3{
+    font-family: DevilBreezeBold;
+    color: #ffd900;
+    font-size: 40px;
+    text-shadow: 3px 3px 3px #191414;
+}
+
+/* FIM BANNER */
+
+/* FEATURES */
+
+.features .row{
+    margin-top: 60px;
+}
+
+.features h1{
+    font-family: DevilBreezeBold;
+    color: #fff;
+    font-size: 60px;
+}
+
+.features h3{
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.features img{
+    width: 60%;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    -webkit-transition: 1s;
+}
+
+.features img:hover{
+    transform: scale(1.2);
+}
+
+.features .display-flex{
+    flex-direction: column;
+}
+
+/* FIM FEATURES */
+
+
+/* SOBRE ALBUNS */
+
+#nightvisions{
+    display: none;
+    animation: animate-div 2s;
+    -webkit-animation: animate-div 2s;
+}
+
+#smokeMirrors{
+    display: none;
+    animation: animate-div 2s;
+    -webkit-animation: animate-div 2s;
+}
+
+#evolve{
+    display: none;
+    animation: animate-div 2s;
+    -webkit-animation: animate-div 2s;
+}
+
+#origins{
+    display: none;
+    animation: animate-div 2s;
+    -webkit-animation: animate-div 2s;
+}
+
+@-webkit-keyframes animate-div {
+    from { opacity: 0; margin-top: -150px;}
+    to { opacity: 1;margin-top: 0px;}
+}
+
+.sobre-album{
+    margin-top: 100px;
+    color: #fff;
+}
+
+.sobre-album img{
+    width: 600px;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 0 10px 10px;
+}
+
+.sobre-album h1{
+    margin-bottom: 40px;
+    font-family: DevilBreezeBold;
+}
+
+.texto p{
+    color: #fff;
+    padding: 0px 40px 0px 40px;
+    margin-bottom: 20px;
+    text-indent: 40px;
+    text-align: justify;
+}
+
+.singles{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.singles .col-5{
+    display: flex;
+    align-items: center;
+    height: 300px;
+}
+
+.singles .col-7{
+    display: flex;
+    align-items: center;
+    height: 300px;
+}
+
+.singles .h1Night{
+    font-size: 40px;
+    text-shadow: 2px 2px 3px #a06d00;
+}
+
+.singles .h1Night span{
+    text-shadow: 2px 2px 3px #714486;
+}
+
+.singles .h1Smo{
+    font-size: 40px;
+    text-shadow: 2px 2px 3px #000000;
+}
+
+.singles h1 .smoMir{
+    text-shadow: 2px 2px 3px #ffa600;
+}
+
+.singles .h1Evo{
+    text-shadow: 2px 2px 3px #0099ff;
+}
+
+.singles .h1Evo .evo{
+    text-shadow: 2px 2px 3px #008f13;
+}
+
+.singles .h1Ori{
+    text-shadow: 2px 2px 3px #00719e;
+}
+
+.singles .ori{
+    text-shadow: 2px 2px 3px #155a00;
+}
+
+.singles .col-7 .display-flex{
+    flex-direction: column;
+}
+
+
+.singles img{
+    z-index: -1;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    background-repeat: no-repeat; 
+    background-size: 100%;
+    height: 300px;
+    filter:contrast(1.2) blur(3px);
+}
+
+.table-singles table{
+    border-collapse: collapse;
+}
+
+.table-singles tr{
+    cursor: pointer;
+}
+
+.titleEvolve{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eEvolve{
+    transform:rotateY(3.142rad);
+}
+
+.table-singles td{
+    height: 35px;
+    font-size: 12px;
+    vertical-align: bottom;
+    border-bottom: 0.1px #ffffff44 solid;
+}
+
+.table-singles tr:hover{
+    vertical-align: middle; 
+    font-weight: bold; 
+}
+
+.table-singles .tdId{
+    width: 30px;
+    border-bottom: none;
+}
+
+.table-singles .tdNome{
+    width: 250px;
+}
+
+.estrelas{
+    background-color: #fff;
+    color: #191414;
+    font-size: 24px;
+    margin-top: 20px;
+    width: 250px;
+    text-align: center;
+    padding: 15px 0 15px;
+    border-radius: 15px;
+}
+
+.estrelas i{
+    cursor: pointer;
+}
+
+/* FIM SOBRE ALBUNS */
+
+
+/* NOVIDADES */
+
+.novidades h1{
+    font-family: DevilBreezeBold;
+    color: #fff;
+    font-size: 60px;
+    margin: 10px 0 80px;
+}
+
+.novidades img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.novidades h2{
+    color: #fff;
+    font-family: DevilBreezeBold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.novidades h3{
+    color: #fff;
+    font-family: DevilBreezeBold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.card-news{
+    margin: 10px;
+    background-color: #2424249f;
+    padding: 30px 10px 30px 10px;
+    border-radius: 20px;
+    height: 500px;
+}
+
+.card-news .col-7{
+    display: flex;
+    align-items: center;
+}
+
+.degrade{
+    background-image: linear-gradient(#19141400, #0b0b0b);
+    height: 200px;
+}
+
+.descricao-noticia{
+    background-color: #0b0b0b;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.titulo-video{
+    color: #fff;
+    margin: 30px;
+    font-family: DevilBreezeBold;
+    font-size: 30px;
+}
+
+/* FIM NOVIDADES */
+
+/* ANCORA */
+
+.ancora{
+    background-color: #fff;
+    color: #191414;
+    width: 40px;
+    height: 40px;
+    position: sticky;
+    bottom: 10px;
+    margin: 10px;
+    float: right;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 10px;
+}
+
+.ancora:hover{
+    color: #ff9100;
+}
+
+/* FIM ANCORA */
+
+/* FOOTER */
+
+.footer{
+    height: 80px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-top: 30px;
+    border-top: #fff 1px solid;
+}
+
+.footer a{
+    color: #ff6600;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* FIM FOOTER */
+
+
+/* ---------------------------------------------------------------------------------- */
+/* GRID */
+/* ---------------------------------------------------------------------------------- */
+
+.container{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: auto;
+}
+
+.display-flex{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-1{
+    width: 8.33333333%;
+    flex: 0 0 auto;
+}
+
+.col-2{
+    width: 16.666666%;
+    flex: 0 0 auto;
+}
+
+.col-3{
+    width: 25%;
+    flex: 0 0 auto;
+}
+
+.col-4{
+    width: 33.3333333%;
+    flex: 0 0 auto;
+}
+
+.dividir-5-partes{
+    width: 20%;
+    flex: 0 0 auto;
+}
+
+.col-5{
+    width: 41.6666666%;
+    flex: 0 0 auto;
+}
+
+.col-6{
+    width: 50%;
+    flex: 0 0 auto;
+}
+
+.col-7{
+    width: 58.333333%;
+    flex: 0 0 auto;
+}
+
+.col-8{
+    width: 66.6666666%;
+    flex: 0 0 auto;
+}
+
+.col-9{
+    width: 75%;
+    flex: 0 0 auto;
+}
+
+.col-10{
+    width: 83.3333333%;
+    flex: 0 0 auto;
+}
+
+.col-11{
+    width: 91.6666666%;
+    flex: 0 0 auto;
+}
+
+.col-12{
+    width: 100%;
+    flex: 0 0 auto;
+}
+
+/* ---------------------------------------------------------------------------------- */
+/* FIM GRID */
+/* ---------------------------------------------------------------------------------- */
