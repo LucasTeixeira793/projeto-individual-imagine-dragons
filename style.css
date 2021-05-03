@@ -26,12 +26,48 @@ body{
     border: none;
     border-radius: 30px;
     font-size: 25px;
-    background-color: #1DB954;
+    background-color: #ff9100;
     color: #fff;
     cursor: pointer;
     outline: none;
     box-shadow: 2px 2px 3px #191414;
     -webkit-transition: 0.5s;
+}
+
+.titulo-grande{
+    font-family: DevilBreezeBold;
+    color: #fff;
+    font-size: 60px;
+    margin: 50px auto;
+}
+
+.titulo-medio{
+    font-family: DevilBreezeBold;
+    color: #fff;
+    font-size: 40px;
+    margin: 50px auto;
+}
+
+.titulo-pequeno{
+    font-family: DevilBreezeBold;
+    color: #fff;
+    font-size: 25px;
+    margin: 20px auto;
+}
+
+.spotify{
+    background-color: #1DB954;
+}
+
+.btn-outline{
+    color: #ff9100;
+    background-color: transparent;
+    border: 2px #ff9100 solid;
+}
+
+.btn-outline:hover{
+    background-color: #ff9100;
+    color: #fff;
 }
 
 .btn-padrao:hover{
@@ -76,6 +112,7 @@ body{
 
 .header .logo{
     width: 150px;
+    float: left;
     -webkit-transition: 0.5s;
 }
 
@@ -84,12 +121,32 @@ body{
     transform: scale(1.05);
 }
 
+#wave{
+    display: none;
+}
+
+.wave-header{
+    margin-left: 20px;
+    float: left;
+}
+
+.wave-header span{
+    font-size: 12px;
+}
+
+.wave-header img{
+    height: 45px;
+    width: 250px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
 /* FIM HEADER */
 
 /* BANNER */
 
 .banner{
-    height: 900px;
+    height: 400px;
 }
 
 .banner-noticia{
@@ -220,6 +277,35 @@ body{
     display: none;
     animation: animate-div 2s;
     -webkit-animation: animate-div 2s;
+}
+
+#playMusic{
+    position: sticky;
+    bottom: 0px;
+    width: 100%;
+    z-index: 2;
+    opacity: 0.3;
+    -webkit-transition: .5s;
+}
+
+#playMusic:hover{
+    opacity: 1;
+}
+
+#estrelas{
+    display: none;
+}
+
+#estrelas1{
+    display: none;
+}
+
+#estrelas2{
+    display: none;
+}
+
+#estrelas3{
+    display: none;
 }
 
 @-webkit-keyframes animate-div {
@@ -439,6 +525,10 @@ body{
     font-size: 30px;
 }
 
+.ver-mais{
+    margin-top: 30px;
+}
+
 /* FIM NOVIDADES */
 
 /* ANCORA */
@@ -469,6 +559,7 @@ body{
 .footer{
     height: 80px;
     width: 100%;
+    bottom: 0;
     text-align: center;
     display: flex;
     align-items: center;
@@ -485,6 +576,15 @@ body{
 }
 
 /* FIM FOOTER */
+
+/* SOBRE */
+
+.integrantes img{
+    width: 90%;
+    border-radius: 10px;
+}
+
+/* FIM SOBRE */
 
 
 /* ---------------------------------------------------------------------------------- */

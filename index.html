@@ -11,19 +11,25 @@
 </head>
 <body>
     <div class="banner" id="inicio">
-        <img src="img/banner.png" class="banner-img" alt="">
+        <img src="img/banner2.png" class="banner-img" alt="">
         <div class="header" id="header" >
             <a href="index.html#inicio"><img src="img/logo.png" class="logo" alt=""></a>
+            <div class="wave-header">
+                <center>
+                    <span id="musicaHeader" onclick="stopMusic()"></span><br>
+                </center>
+                <img src="img/wave.gif" onclick="stopMusic()" id="wave" alt="">
+            </div>
             <ul>
                 <li><a href="index.html#inicio">Home</a></li>
                 <li><a href="index.html#albuns">Albuns</a></li>
-                <li><a href="">Sobre</a></li>
-                <li><a href="">Integrantes</a></li>
+                <li><a href="index.html#novidades">Noticias</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
             </ul>
         </div>
         <div class="ouvintes">
-            <h1>Ouvintes mensais:</h1>
-            <h3>40.114.997</h3>
+            <!-- <h1>Ouvintes mensais:</h1>
+            <h3>40.114.997</h3> -->
         </div>
     </div>
 
@@ -87,7 +93,7 @@
                         <div class="display-flex">
                             <h1 class="h1Night">Top 5 Musicas do album <br><span>Night Visions</span></h1>
                             <a href="https://open.spotify.com/album/1zcNZa89FXNruaesVKiVeu?si=2ffZCQzbSaa9iwIItGkjhw" target="_blank">
-                                <button class="btn-padrao"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
+                                <button class="btn-padrao spotify"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
                             </a>
                         </div>
                     </div>
@@ -122,8 +128,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="row display-flex" id="playMusic"></div>
+                </div>                
                 <div class="display-flex" id="estrelas">
                     <div class="estrelas">
                         <span>4.0</span>
@@ -160,7 +165,7 @@
                         <div class="display-flex">
                             <h1 class="h1Smo">Top 5 Musicas do Album <br><span class="smoMir">Smoke + Mirrors</span></h1>
                             <a href="https://open.spotify.com/album/6rRFeV6xigfNyPoZ6YqcoW?si=PRHUSr1_SkS7TBsn2E2Mow" target="_blank">
-                                <button class="btn-padrao"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
+                                <button class="btn-padrao spotify"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
                             </a>
                         </div>
                     </div>
@@ -196,7 +201,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row display-flex" id="playMusic1"></div>
                 <div class="display-flex" id="estrelas1">
                     <div class="estrelas">
                         <span>4.0</span>
@@ -214,7 +218,7 @@
 
         <div id="evolve">
             <div class="text-center titleEvolve">
-                <h1 class="eEvolve">E</h1><h1 class="volveEvole">Volve</h1>
+                <h1 class="eEvolve">E</h1><h1 class="volveEvole">volVe</h1>
             </div>
             <div class="row">                
                 <div class="col-12">
@@ -244,7 +248,7 @@
                         <div class="display-flex">
                             <h1 class="h1Evo">Top 5 Musicas do Album <br><span class="evo">Evolve</span></h1>
                             <a href="https://open.spotify.com/album/33pt9HBdGlAbRGBHQgsZsU?si=R-8NmFWzSReZhpfZOozNrA" target="_blank">
-                                <button class="btn-padrao"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
+                                <button class="btn-padrao spotify"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
                             </a>
                         </div>
                     </div>
@@ -280,7 +284,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row display-flex" id="playMusic2"></div>
                 <div class="display-flex" id="estrelas2">
                     <div class="estrelas">
                         <span>4.0</span>
@@ -330,7 +333,7 @@
                         <div class="display-flex">
                             <h1 class="h1Ori">Top 5 Musicas do Album <br><span class="ori">Origins</span></h1>
                             <a href="https://open.spotify.com/album/3JfSxDfmwS5OeHPwLSkrfr?si=wZbSo8LbQ0y__KBiFOoxAw" target="_blank">
-                                <button class="btn-padrao"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
+                                <button class="btn-padrao spotify"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
                             </a>
                         </div>
                     </div>
@@ -366,7 +369,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="row display-flex" id="playMusic3"></div>
                 <div class="display-flex" id="estrelas3">
                     <div class="estrelas">
                         <span>4.0</span>
@@ -381,7 +383,7 @@
         </div>
     </div>
 
-    <div class="novidades">
+    <div class="novidades" id="novidades">
         <div class="container">
             <h1 class="text-center">Novidades</h1>
             <div class="row">
@@ -396,7 +398,7 @@
                                 </p>      
                                 <div class="display-flex" style="margin-top: 30px;">
                                     <a href="" style="text-decoration: none;">
-                                        <button class="btn-padrao">Saiba mais</button>
+                                        <button class="btn-padrao btn-outline">Saiba mais</button>
                                     </a>
                                 </div>                      
                             </div>
@@ -414,12 +416,17 @@
                                 </p>      
                                 <div class="display-flex" style="margin-top: 30px;">
                                     <a href="noticia.html" style="text-decoration: none;">
-                                        <button class="btn-padrao">Saiba mais</button>
+                                        <button class="btn-padrao btn-outline">Saiba mais</button>
                                     </a>
                                 </div>                      
                             </div>
                         </div>
                     </div>                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="display-flex ver-mais">
+                    <button class="btn-padrao">Ver mais...</button>
                 </div>
             </div>
         </div>
@@ -434,6 +441,7 @@
     <div class="footer">
         <span>copyright <a href="">Lucas Menezes Teixeira</a></span>
     </div>
+    <div class="row display-flex" id="playMusic"></div>
     <script src="https://kit.fontawesome.com/47509d94ad.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>
