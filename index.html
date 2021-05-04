@@ -9,7 +9,7 @@
     <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body>    
     <div class="banner" id="inicio">
         <img src="img/banner2.png" class="banner-img" alt="">
         <div class="header" id="header" >
@@ -137,6 +137,7 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()" aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -209,6 +210,7 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()"  aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -292,6 +294,7 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()"  aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -377,6 +380,7 @@
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()"  aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -427,6 +431,50 @@
             <div class="row">
                 <div class="display-flex ver-mais">
                     <button class="btn-padrao">Ver mais...</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sessaoComentarios" class="comentarios">
+        <div class="comentarios-cabecalho">
+            <div class="row">
+                <div class="col-3">
+                    <i class="fa fa-times" onclick="abrirComentario()" id="idFecharComentarios" aria-hidden="true"></i>
+                </div>
+                <div class="col-9">
+                    <center>
+                        <span>Comentários: <b id="musicaComentario">Radioactive</b></span>
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="comentarios-conteudo">
+            <div class="comentario-unico">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="img/foto-perfil/default.jpg" alt="">
+                    </div>
+                    <div class="col-8">
+                        <span id="nickname" class="nickname">@anonimous123</span><br>
+                        <span id="msg">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime possimus quod earum.</span>
+                    </div>
+                    <div class="col-2">
+                        <center>
+                            <i class="fa fa-heart-o" aria-hidden="true"></i><br>
+                            <span>15</span>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="comentarios-rodape">
+            <div class="row">
+                <div class="col-10">
+                    <input type="text" placeholder="Digite seu comentário aqui...">
+                </div>
+                <div class="col-2 display-flex">
+                    <button><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>

@@ -1,3 +1,8 @@
+var albumAtivo = 0;
+var numAlbum = 0;
+var nomeMusica = "";
+var comentarioAtivo = 0;
+
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
     var currentScrollPos = window.pageYOffset;
@@ -12,14 +17,11 @@ window.onscroll = function() {
     }
 }
 
-var albumAtivo = 0;
-var numAlbum = 0;
-var nomeMusica = "";
-
 function stopMusic(){
     playMusic.innerHTML = "";
     wave.style.display = "none";
     musicaHeader.innerHTML = "";
+    fecharComentario();
 }
 
 function albuns(album){
@@ -61,6 +63,7 @@ function albuns(album){
             musicaHeader.innerHTML = "";
             wave.style.display = "none";
             albumAtivo = 0;
+            fecharComentario();
         }
     
 }
@@ -99,7 +102,7 @@ function musicasNightVisions(musica){
         musicaHeader.innerHTML = "";
         playMusic.innerHTML = "";
         estrelas.style.display = "none";
-        
+        fecharComentario()
     }  
 }
 
@@ -133,6 +136,7 @@ function musicasSmokeMirrors(musica){
         wave.style.display = "none";
         playMusic.innerHTML = "";
         estrelas1.style.display = "none";
+        fecharComentario()
     }  
 }
 
@@ -166,6 +170,7 @@ function musicasEvolve(musica){
         musicaHeader.innerHTML = "";
         playMusic.innerHTML = "";
         estrelas2.style.display = "none";
+        fecharComentario()
     }  
 }
 
@@ -199,5 +204,26 @@ function musicasOrigins(musica){
         musicaHeader.innerHTML = "";
         playMusic.innerHTML = "";
         estrelas3.style.display = "none";
+        fecharComentario()
     }  
+}
+
+
+
+
+
+function abrirComentario(){
+    if(comentarioAtivo == 0){
+        sessaoComentarios.style.display = "block";
+        musicaComentario.innerHTML = nomeMusica;
+        sessaoComentarios.style.right = "0";
+        comentarioAtivo = 1;
+    }else{
+        fecharComentario();
+    }
+}
+
+function fecharComentario(){
+    sessaoComentarios.style.right = "-500px";
+    comentarioAtivo = 0;
 }
