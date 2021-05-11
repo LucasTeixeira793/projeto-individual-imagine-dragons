@@ -21,18 +21,40 @@ body{
     text-align: center;
 }
 
-.btn-padrao{
+.btn{
     padding: 15px 25px 15px 25px;
     border: none;
     border-radius: 30px;
     font-size: 25px;
-    background-color: #ff9100;
-    color: #fff;
     cursor: pointer;
     outline: none;
-    box-shadow: 2px 2px 3px #191414;
+    box-shadow: 2px 2px 3px #07070779;
     -webkit-transition: 0.5s;
 }
+
+.btn-padrao{
+    background-color: #ff9100;
+    color: #fff;
+    box-shadow: 2px 2px 3px #191414;
+}
+
+.btn-padrao:hover{
+    background-color: #a86105;
+    box-shadow: 4px 4px 6px #191414;
+}
+
+
+.btn-outline{
+    color: #ff9100;
+    background-color: transparent;
+    border: 2px #ff9100 solid;
+}
+
+.btn-outline:hover{
+    background-color: #ff9100;
+    color: #fff;
+}
+
 
 .titulo-grande{
     font-family: DevilBreezeBold;
@@ -57,22 +79,15 @@ body{
 
 .spotify{
     background-color: #1DB954;
-}
-
-.btn-outline{
-    color: #ff9100;
-    background-color: transparent;
-    border: 2px #ff9100 solid;
-}
-
-.btn-outline:hover{
-    background-color: #ff9100;
     color: #fff;
+    box-shadow: 2px 2px 3px #191414;
 }
 
-.btn-padrao:hover{
-    box-shadow: 4px 4px 6px #191414;
+.spotify:hover{
+    background-color: #0ce758;
+    box-shadow: 4px 4px 3px #191414;
 }
+
 
 /* HEADER */
 
@@ -641,7 +656,7 @@ body{
 .comentario-unico .col-2{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: centerf;
 }
 
 .comentario-unico .col-8 span{
