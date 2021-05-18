@@ -27,7 +27,7 @@ module.exports = {
     // altere APENAS username, password e database.
     username: 'root',
     password: 'josimar1911',
-    database: 'projetoiot',
+    database: 'imagineDragons',
     host: 'localhost',
     dialect: 'mysql',
     xuse_env_variable: 'DATABASE_URL',

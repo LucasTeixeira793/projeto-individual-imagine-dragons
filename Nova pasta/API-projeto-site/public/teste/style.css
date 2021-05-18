@@ -8,13 +8,18 @@
     src: url("DevilBreezeBold.ttf");
 }
 
+@font-face {
+    font-family: Monserrat;
+    src: url('Montserrat-Regular.ttf');
+}
+
 html{
     scroll-behavior: smooth;
 }
 
 body{
     background-color: #0b0b0b;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Monserrat;
 }
 
 .text-center{
@@ -43,6 +48,27 @@ body{
     box-shadow: 4px 4px 6px #191414;
 }
 
+.btn-login{
+    background-color: #e2176b;
+    color: #fff;
+    box-shadow: 2px 2px 3px #191414;
+}
+
+.btn-login:hover{
+    background-color: #b60f54;
+    box-shadow: 4px 4px 6px #191414;
+}
+
+.btn-cadastro{
+    background-color: #ff4444;
+    color: #fff;
+    box-shadow: 2px 2px 3px #191414;
+}
+
+.btn-cadastro:hover{
+    background-color: #a52c2c;
+    box-shadow: 4px 4px 6px #191414;
+}
 
 .btn-outline{
     color: #ff9100;
@@ -86,6 +112,51 @@ body{
 .spotify:hover{
     background-color: #0ce758;
     box-shadow: 4px 4px 3px #191414;
+}
+
+.centralizar{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.box-login input, .box-cadastro input{
+    width: 100%;
+    background-color: transparent;
+    height: 35px;
+    margin: 5px 0px 20px 0px;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #313131;
+    color: #fff;
+    border-radius: 0 2px 2px;
+}
+
+.box-login input:focus, .box-cadastro input:focus{
+    transition: 0.3s;
+    border-bottom: 2px solid #0077ff;
+}
+
+input[type="checkbox"] {
+    display:none;
+}
+
+input[type="checkbox"] + label {
+    color:#f2f2f2;
+}
+
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:19px;
+    height:19px;
+    margin:-2px 10px 0 0;
+    vertical-align:middle;
+    background:url('img/checkbox.png') left top no-repeat;
+    cursor:pointer;
+}
+
+input[type="checkbox"]:checked + label span {
+    background:url('img/checkbox.png') -19px top no-repeat;
 }
 
 
@@ -706,13 +777,85 @@ body{
 }
 
 .box-login{
-    width: 50vw;
+    margin-top: 60px;
+    width: 40vw;
     background-color: rgba(0, 0, 0, 0.87);
     padding: 40px;
     border-radius: 10px;
     color: #fff;
+    display: flex;
+    flex-direction: column;
 }
+
+.box-login h1{
+    font-family: DevilBreezeBold;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.box-login button{
+    margin-top: 20px;
+    height: 40px;
+    font-size: 20px;
+    width: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkLembrar{
+    margin: 20px 0px;
+}
+
 /* Fim Login */
+
+/* Cadastro */
+
+.bg-cadastro{
+    background-image: url('img/banners/Cadastro.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.section-cadastro{
+    display: flex;
+    justify-content: center;
+}
+
+.box-cadastro{
+    margin-top: 120px;
+    background-color: rgba(0, 0, 0, 0.87);
+    padding: 40px;
+    width: 40vw;
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-cadastro h1{
+    font-family: DevilBreezeBold;
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.section-cadastro .col-6 input, .section-cadastro .col-6 label{
+    width: 80%;
+    margin-left: 10px;
+}  
+
+.box-cadastro button{
+    margin-top: 20px;
+    height: 40px;
+    font-size: 20px;
+    width: 10vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fim Cadastro */
 
 
 
