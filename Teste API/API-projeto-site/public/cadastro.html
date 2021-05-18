@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ID | Cadastro</title>
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="style.css">
 </head>
@@ -14,12 +13,7 @@
     <!-- Header -->
     <header class="header" id="header" >
         <a href="index.html#inicio"><img src="img/logo.png" class="logo" alt=""></a>
-        <div class="wave-header">
-            <center>
-                <span id="musicaHeader" onclick="stopMusic()"></span><br>
-            </center>
-            <img src="img/wave.gif" onclick="stopMusic()" id="wave" alt="">
-        </div>
+
         <ul>
             <li><a href="index.html#inicio">Home</a></li>
             <li><a href="sobre.html">Sobre</a></li>
@@ -28,58 +22,143 @@
         </ul>
     </header>
 
-    <section class="section-cadastro">
-        <div class="formulario">
-
-            <form class="box-cadastro" method="post" id="form_cadastro" onsubmit="return cadastrar()">
-                <h1>Cadastro:</h1>
-                <div class="row">
-                    <label for="email-cadastro">Nome completo:</label>
-                    <input type="text" name="nomeUser" id="nome-cadastro" placeholder="Digite seu nome..." maxlength="80" required>
-                </div>
-                <div class="row">
-                    <label for="email-cadastro">Nickname:</label>
-                    <input type="text" name="nickname" id="nickname-cadastro" placeholder="Digite seu nickname..." maxlength="50" required>
-                </div>
-                <div class="row">
-                    <label for="email-cadastro">Email:</label>
-                    <input type="email" name="email" id="email-cadastro" placeholder="Digite seu email..." maxlength="50" required>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                        <label for="senha-cadastro">Senha:</label>
-                        <input type="password" name="senha" id="senha-cadastro" placeholder="Digite sua senha..." maxlength="40" required>
+    <div class="contato">
+        <div class="container">
+            <div class="section-cadastro">
+                <div class="box-cadastro">
+                    <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                        <h1>Cadastro:</h1>
+                        <div class="row">
+                            <label for="inputNomeCadastro">Nome completo:</label>
+                            <input type="text" name="nomeUser" placeholder="Digite seu nome..."  autofocus="autofocus" onfocusout="validar('nome')" id="inputNomeCadastro" maxlength="80" required>
+                        </div>
+                        <div class="row">
+                            <label for="inputNicknameCadastro">Nickname:</label>
+                            <input type="text" name="nickname" id="inputNicknameCadastro" onfocusout="validar('nickname')" placeholder="Digite seu nickname..." maxlength="20" required>
+                        </div>
+                        <div class="row">
+                            <label for="inputEmailCadastro">Email:</label>
+                            <input type="email" name="email" id="inputEmailCadastro" placeholder="Digite seu email..." onfocusout="validar('email')" maxlength="50" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="senha-cadastro">Senha:</label>
+                                <input type="password" name="senha" id="inputSenha" onfocusout="validar('senha')" placeholder="Digite sua senha..." maxlength="40" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="senha-cadastro">Confirmar senha:</label>
+                                <input type="password" id="inputConfirmaSenha" onfocusout="validar('confirma')" name="confirmaSenha" placeholder="Confirme sua senha..." maxlength="40" required>
+                            </div>
+                        </div>
+                        
+                            
+                        <button type="submit" id="btn_entrar" class="btn btn-cadastro">Cadastrar</button>
+                    </form>
+            
+                    <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+                        Erro no cadastro
                     </div>
-                    <div class="col-6">
-                        <!-- <label for="senha-cadastro">Confirmar senha:</label>
-                        <input type="password" name="senha" id="senha-cadastro" placeholder="Confirme sua senha..." maxlength="40" required> -->
-                    </div>
-                </div>
     
-                <div class="centralizar">
-                    <button class="btn btn-cadastro" type="submit">Cadastrar</button>
                 </div>
-            </form>
+            </div>
         </div>
-        <img src="../aguarde-orange.gif" id="img_aguarde" style="display: none; width:100px">
-        <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
-            Erro no cadastro
-        </div>
-    </section>
+    </div>
 
-    <!-- Scripts -->
-    <div class="row display-flex" id="playMusic"></div>
-    <script src="https://kit.fontawesome.com/47509d94ad.js" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
 </body>
 </html>
 
 <script>
 
+    var valNome = 0;
+    var valNick = 0;
+    var valEma = 0;
+    var valsen = 0;
+    function validar(campo){        
+        var nomeCadastro = inputNomeCadastro.value;
+        var nicknameCadastro = inputNicknameCadastro.value;
+        var emailCadastro = inputEmailCadastro.value;
+        var senhaCadastro = inputSenha.value;
+        var confirmaCadastro = inputConfirmaSenha.value;        
+        switch (campo) {
+            case 'nome':
+                if (nomeCadastro.length < 3) {
+                    inputNomeCadastro.style.borderBottom = '2px solid red';
+                    valNome = 0;
+                }
+                else{
+                    valNome = 1;
+                    inputNomeCadastro.style.borderBottom = '2px solid #0077ff';
+                }
+                
+                break;
+            
+            case 'nickname':
+                if (nicknameCadastro < 4 || nicknameCadastro.indexOf(' ') != -1) {
+                    inputNicknameCadastro.style.borderBottom = '2px solid red';
+                    valNick = 0;
+                }else{
+                    valNick = 1;
+                    inputNicknameCadastro.style.borderBottom = '2px solid #0077ff';
+                }
+                break;
+            
+            case 'email':
+                if (emailCadastro.length < 4 || emailCadastro.indexOf(' ') != -1 || emailCadastro.indexOf('@') == -1 || emailCadastro.indexOf('.com') == -1) {
+                    inputEmailCadastro.style.borderBottom = '2px solid red';
+                    valEma = 0;
+                }else{
+                    valEma = 1;
+                    inputEmailCadastro.style.borderBottom = '2px solid #0077ff';
+                }
+                break;
+
+            case 'senha':
+                if (senhaCadastro.length < 6) {
+                    inputSenha.style.borderBottom = '2px solid red';
+                }else{
+                    inputSenha.style.borderBottom = '2px solid #0077ff';
+                }
+                break;   
+                
+            case 'confirma':
+                if (confirmaCadastro != senhaCadastro || confirmaCadastro.length < 6) {
+                    inputSenha.style.borderBottom = '2px solid red';
+                    inputConfirmaSenha.style.borderBottom = '2px solid red';
+                    valSen = 0;
+                }else{
+                    inputSenha.style.borderBottom = '2px solid #0077ff';
+                    inputConfirmaSenha.style.borderBottom = '2px solid #0077ff';
+                    valSen = 1;
+                }
+                break;
+            default:
+                alert('deu erro')
+                break;
+        }      
+        desbloquearBotao();
+        
+    }
+
+    function desbloquearBotao(){
+        if (valNome == 1 && valNick == 1 && valEma == 1 && valSen == 1) {
+            document.getElementById("btn_entrar").disabled = false;
+        }else{
+            document.getElementById("btn_entrar").disabled = true;
+        }
+    }
+
 function cadastrar() {
+    var senhaCadastro = inputSenha.value;
+    var confirmaSenhaCadastro = inputConfirmaSenha.value;
+
+    if (senhaCadastro != confirmaSenhaCadastro) {
+        
+    }else{
+
+    }
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_cadastro));
-        fetch("../usuarios/cadastrar", {
+        fetch("/usuarios/cadastrar", {
             method: "POST",
             body: formulario
         }).then(function (response) {
@@ -103,13 +182,11 @@ function cadastrar() {
 
     function aguardar() {
         btn_entrar.disabled = true;
-        img_aguarde.style.display='block';
         div_erro.style.display='none';
     }
 
     function finalizar_aguardar() {
         btn_entrar.disabled = false;
-        img_aguarde.style.display='none';
         div_erro.style.display='block';
     }
 

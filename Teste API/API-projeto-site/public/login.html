@@ -28,27 +28,35 @@
         </ul>
     </header>
 
-    <section class="section-login">
-        <form class="box-login">
-            <h1>Login:</h1>
-            <div class="row">
-                <label for="email-login">Email:</label>
-                <input type="email" name="email" id="email-login" placeholder="Digite seu email..." maxlength="50" required>
+    <div class="pag-login">
+        <div class="container">
+            <div class="section-login">
+                <div class="box-login">
+                    <form id="form_login" method="post" onsubmit="return entrar()">
+                        <h1>Login</h1>
+                        <div class="row">
+                            <label for="email-login">Email:</label>
+                            <input type="email" name="email" id="email-login" placeholder="Digite seu email..." maxlength="50" required>
+                        </div>
+                        <div class="row">
+                            <label for="senha-login">Senha:</label>
+                            <input type="password" name="senha" id="senha-login" placeholder="Digite sua senha..." maxlength="40" required>
+                        </div>
+                        <div class="checkLembrar">
+                            <input type="checkbox" id="c1" name="cc" />
+                            <label for="c1"><span></span>Lembrar de mim</label>                
+                        </div>
+                        <br>
+                        <button id="btn_entrar" class="btn btn-login">Entrar</button>
+                    </form>
+                    <div class="extra">
+                        <div id="div_erro" class="msg_erro"></div>
+                        <!-- <img src="aguarde-orange.gif" id="img_aguarde"> style="display: none;" -->
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <label for="senha-login">Senha:</label>
-                <input type="password" name="senha" id="senha-login" placeholder="Digite sua senha..." maxlength="40" required>
-            </div>
-            <div class="checkLembrar">
-                <input type="checkbox" id="c1" name="cc" />
-                <label for="c1"><span></span>Lembrar de mim</label>                
-            </div>
-
-            <div class="centralizar">
-                <button class="btn btn-login" type="submit">Logar</button>
-            </div>
-        </form>
-    </section>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <div class="row display-flex" id="playMusic"></div>
@@ -56,3 +64,52 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<script>
+
+function entrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_usuario_meuapp = json.email;
+                    sessionStorage.nome_usuario_meuapp = json.nomeUser;
+                    alert('Você está logado');
+                    window.location.href = 'index.html';
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizar_aguardar(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        // img_aguarde.style.visibility = 'visible';
+        div_erro.style.visibility = 'hidden';
+    }
+
+    function finalizar_aguardar(resposta) {
+        btn_entrar.disabled = false;
+        // img_aguarde.style.visibility = 'hidden';
+        div_erro.style.visibility = 'visible';
+        div_erro.innerHTML = resposta;
+    }
+
+</script>

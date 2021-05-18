@@ -70,6 +70,11 @@ body{
     box-shadow: 4px 4px 6px #191414;
 }
 
+.btn-cadastro:disabled{
+    background-color: #818181;
+    cursor: no-drop;
+}
+
 .btn-outline{
     color: #ff9100;
     background-color: transparent;
@@ -794,7 +799,6 @@ input[type="checkbox"]:checked + label span {
 }
 
 .box-login button{
-    margin-top: 20px;
     height: 40px;
     font-size: 20px;
     width: 10vw;
