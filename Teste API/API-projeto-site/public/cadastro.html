@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BT">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID | Cadastro</title>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-cadastro">  
+
+    <!-- Header -->
+    <header class="header" id="header" >
+        <a href="index.html#inicio"><img src="img/logo.png" class="logo" alt=""></a>
+        <div class="wave-header">
+            <center>
+                <span id="musicaHeader" onclick="stopMusic()"></span><br>
+            </center>
+            <img src="img/wave.gif" onclick="stopMusic()" id="wave" alt="">
+        </div>
+        <ul>
+            <li><a href="index.html#inicio">Home</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="cadastro.html">CAdastrar</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </header>
+
+    <section class="section-cadastro">
+        <div class="formulario">
+
+            <form class="box-cadastro" method="post" id="form_cadastro" onsubmit="return cadastrar()">
+                <h1>Cadastro:</h1>
+                <div class="row">
+                    <label for="email-cadastro">Nome completo:</label>
+                    <input type="text" name="nomeUser" id="nome-cadastro" placeholder="Digite seu nome..." maxlength="80" required>
+                </div>
+                <div class="row">
+                    <label for="email-cadastro">Nickname:</label>
+                    <input type="text" name="nickname" id="nickname-cadastro" placeholder="Digite seu nickname..." maxlength="50" required>
+                </div>
+                <div class="row">
+                    <label for="email-cadastro">Email:</label>
+                    <input type="email" name="email" id="email-cadastro" placeholder="Digite seu email..." maxlength="50" required>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label for="senha-cadastro">Senha:</label>
+                        <input type="password" name="senha" id="senha-cadastro" placeholder="Digite sua senha..." maxlength="40" required>
+                    </div>
+                    <div class="col-6">
+                        <!-- <label for="senha-cadastro">Confirmar senha:</label>
+                        <input type="password" name="senha" id="senha-cadastro" placeholder="Confirme sua senha..." maxlength="40" required> -->
+                    </div>
+                </div>
+    
+                <div class="centralizar">
+                    <button class="btn btn-cadastro" type="submit">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+        <img src="../aguarde-orange.gif" id="img_aguarde" style="display: none; width:100px">
+        <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+            Erro no cadastro
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <div class="row display-flex" id="playMusic"></div>
+    <script src="https://kit.fontawesome.com/47509d94ad.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<script>
+
+function cadastrar() {
+        aguardar();
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("../usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+
+                window.location.href='login.html';
+
+            } else {
+
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+                finalizar_aguardar();
+            }
+        });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        img_aguarde.style.display='block';
+        div_erro.style.display='none';
+    }
+
+    function finalizar_aguardar() {
+        btn_entrar.disabled = false;
+        img_aguarde.style.display='none';
+        div_erro.style.display='block';
+    }
+
+</script>
