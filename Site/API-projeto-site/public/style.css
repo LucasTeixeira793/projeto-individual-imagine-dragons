@@ -172,7 +172,7 @@ input[type="checkbox"]:checked + label span {
     padding: 20px 50px 20px 50px;
     position: fixed;
     color: #fff;
-    font-family: DevilBreezeBold;
+    /* font-family: DevilBreezeBold; */
     z-index: 2;
     display: block;
     transition: top 0.3s;
@@ -190,6 +190,10 @@ input[type="checkbox"]:checked + label span {
     margin-right: 20px;
     font-size: 20px;
     -webkit-transition: 0.5s;
+}
+
+li #navbarLogado{
+    display: none;
 }
 
 .header ul li:hover{

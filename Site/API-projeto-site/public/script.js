@@ -2,6 +2,58 @@ var albumAtivo = 0;
 var numAlbum = 0;
 var nomeMusica = "";
 var comentarioAtivo = 0;
+var usuarioLogado = sessionStorage.getItem('logado');
+var navbar;
+
+if (sessionStorage.getItem('logado') == 1) {
+    usuarioLogado = 1;
+}else{
+    usuarioLogado = 0;
+}
+
+var navbarUserDeslogado = `
+        <a href="index.html#inicio"><img src="img/logo.png" class="logo" alt=""></a>
+        <div class="wave-header">
+            <center>
+                <span id="musicaHeader" onclick="stopMusic()"></span><br>
+            </center>
+            <img src="img/wave.gif" onclick="stopMusic()" id="wave" alt="">
+        </div>
+        <ul>
+            <li><a href="index.html#inicio">Home</a></li>
+            <li><a href="index.html#novidades">Notícias</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+
+            <!-- Deslogado -->
+            <li class="navbarDeslogado"><a href="cadastro.html">Cadastrar</a></li>
+            <li class="navbarDeslogado"><a href="login.html">Login</a></li>
+
+        </ul>
+    `;
+var navbarUserLogado = `
+    <a href="index.html#inicio"><img src="img/logo.png" class="logo" alt=""></a>
+    <div class="wave-header">
+        <center>
+            <span id="musicaHeader" onclick="stopMusic()"></span><br>
+        </center>
+        <img src="img/wave.gif" onclick="stopMusic()" id="wave" alt="">
+    </div>
+    <ul>
+        <li><a href="index.html#inicio">Home</a></li>
+        <li><a href="index.html#novidades">Notícias</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+
+        <!-- Logado -->
+        <li id="navbarLogado" style="font-family: Monserrat; cursor: pointer;">Olá <b id="b_usuario"></b></li>
+        <li class="navbarLogado" style="font-family: Monserrat; cursor: pointer;"><a onclick="logoff()">Sair</a></li>
+    </ul>
+`;
+alterarNavbar(usuarioLogado);
+
+
+/* ---------------------------------------------------------------------------------- */
+/* Navbar */
+/* ---------------------------------------------------------------------------------- */
 
 var prevScrollpos = window.pageYOffset;
 window.onscroll = function() {
@@ -23,6 +75,10 @@ function stopMusic(){
     musicaHeader.innerHTML = "";
     fecharComentario();
 }
+
+/* ---------------------------------------------------------------------------------- */
+/* Albuns */
+/* ---------------------------------------------------------------------------------- */
 
 function albuns(album){
     // alert(`Album: ${album}, Numalbum: ${numAlbum}`)
@@ -211,6 +267,9 @@ function musicasOrigins(musica){
 
 
 
+/* ---------------------------------------------------------------------------------- */
+/* Comentários */
+/* ---------------------------------------------------------------------------------- */
 
 function abrirComentario(){
     if(comentarioAtivo == 0){
@@ -227,3 +286,116 @@ function fecharComentario(){
     sessaoComentarios.style.right = "-500px";
     comentarioAtivo = 0;
 }
+
+
+
+
+/* ---------------------------------------------------------------------------------- */
+/* Login */
+/* ---------------------------------------------------------------------------------- */
+
+function entrar() {
+    aguardar();
+    var formulario = new URLSearchParams(new FormData(form_login));
+    fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_usuario_meuapp = json.email;
+                    sessionStorage.nome_usuario_meuapp = json.nomeUser;
+                    alert('Você está logado');
+                    sessionStorage.setItem('logado', 1);
+                    window.location.href = 'index.html';
+                    alterarNavbar(1);
+                });
+
+            } else {
+                console.log('Erro de login!');
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizar_aguardar(texto);
+                });
+            }
+    });
+
+        return false;
+    }
+
+    function aguardar() {
+        btn_entrar.disabled = true;
+        // img_aguarde.style.visibility = 'visible';
+        div_erro.style.visibility = 'hidden';
+    }
+
+    function finalizar_aguardar(resposta) {
+        btn_entrar.disabled = false;
+        // img_aguarde.style.visibility = 'hidden';
+        div_erro.style.visibility = 'visible';
+        div_erro.innerHTML = resposta;
+    }
+
+    function alterarNavbar(toggle){
+        if (toggle == 1) {
+            navbar = navbarUserLogado;
+        }else{
+            navbar = navbarUserDeslogado;
+        }
+        header.innerHTML = navbar;
+    }
+
+    
+
+
+/* ---------------------------------------------------------------------------------- */
+/* Logoff */
+/* ---------------------------------------------------------------------------------- */
+
+
+    let login_usuario;
+    let nome_usuario;
+
+    function redirecionar_login() {
+        window.location.href = 'login.html';
+    }
+
+    function verificar_autenticacao() {
+        login_usuario = sessionStorage.login_usuario_meuapp;
+        nome_usuario = sessionStorage.nome_usuario_meuapp;
+        if (login_usuario == undefined)  {
+            redirecionar_login();
+        } else {
+            b_usuario.innerHTML = "awdawdaddawd";
+            validar_sessao();
+        }
+        
+    }
+
+    function logoff() {
+        finalizar_sessao();
+        sessionStorage.clear();
+        redirecionar_login();
+    }
+
+    function validar_sessao() {
+        fetch(`/usuarios/sessao/${login_usuario}`, {cache:'no-store'})
+        .then(resposta => {
+            if (resposta.ok) {
+                resposta.text().then(texto => {
+                    console.log('Sessão :) ', texto);    
+                });
+            } else {
+                console.error('Sessão :.( ');
+                logoff();
+            } 
+        });    
+    }
+
+    function finalizar_sessao() {
+        fetch(`/usuarios/sair/${login_usuario}`, {cache:'no-store'}); 
+    }

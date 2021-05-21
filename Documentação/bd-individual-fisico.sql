@@ -47,3 +47,31 @@ create table Noticia(
     textoNoticia text not null,
     dataNoticia DATE
 );
+
+select * from usuario;
+select * from musica;
+
+insert into musica values
+	(null,'Radioactive','Night Visions'),
+    (null,'Demons','Night Visions'),
+    (null,"It's time",'Night Visions'),
+    (null,'Bleeding out','Night Visions'),
+    (null,'On the top of the world','Night Visions'),
+    
+    (null,'Shots','Smoke and Mirrors'),
+    (null,'I bet my life','Smoke and Mirrors'),
+    (null,'Gold','Smoke and Mirrors'),
+    (null,'Smoke and Mirrors','Smoke and Mirrors'),
+    (null,'Friction','Smoke and Mirrors'),
+    
+    (null,'Believer','Evolve'),
+    (null,'Whatever it takes','Evolve'),
+    (null,'Walking the wire','Evolve'),
+    (null,'Mouth of the river','Evolve'),
+    (null,'Thunder','Evolve'),
+    
+    (null,'Natural','Origins'),
+    (null,'Birds','Origins'),
+    (null,'Bad Liar','Origins'),
+    (null,'Boomerang','Origins'),
+    (null,'Zero','Origins');
