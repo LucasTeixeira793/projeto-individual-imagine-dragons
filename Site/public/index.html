@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BT">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagine Dragons</title>
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>  
+
+    <!-- Header -->
+    <header class="header" id="header"></header>  
+
+    <!-- Banner section -->
+    <section class="banner" id="inicio">
+        <img src="img/banner2.png" class="banner-img" alt="">        
+        <div class="ouvintes">
+            <h1>Ouvintes mensais:</h1>
+            <h3>40.114.997</h3>
+        </div> 
+    </section>
+    
+    <!-- Features section -->
+    <section class="features" id="albuns">
+        <div class="container">
+            <div class="row">
+                <div class="display-flex">
+                    <h1>Discografia</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <div class="display-flex">
+                        <img src="img/Albuns/night-visions.jpg" onclick="albuns(1)" id="idAlbumNightVisions" alt="">
+                        <h3 onclick="albuns(1)">Night visions</h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="display-flex">
+                        <img src="img/Albuns/smoke-mirrors.jpg" onclick="albuns(2)" id="idAlbumSmoke" alt="">
+                        <h3 onclick="albuns(2)">Smoke + Mirrors</h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="display-flex">
+                        <img src="img/Albuns/evolve.jpg" onclick="albuns(3)" id="idAlbumEvolve" alt="">
+                        <h3  onclick="albuns(3)">Evolve</h3>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="display-flex">
+                        <img src="img/Albuns/origins.jpg" onclick="albuns(4)" id="idAlbumOrigins" alt="">
+                        <h3  onclick="albuns(4)">Origins</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Album description section -->
+    <section class="sobre-album">
+
+        <!-- Album Night Visions -->
+        <div id="nightvisions">
+            <h1 class="text-center">Night Visions</h1>
+            <div class="row">                
+                <div class="col-12">
+                    <div class="container">
+                        <div class="texto">
+                            <p>
+                                Night Visions é o primeiro álbum de estúdio pela American pop rock band Imagine Dragons. Foi lançado em 4 de setembro de 2012, através da Kidinakorner e da Interscope Records. A versão estendida foi lançada em 12 de fevereiro de 2013, adicionando mais três músicas e o lançamento do álbum no Reino Unido foi em 26 de março de 2013. Gravado entre 2010 e 2012, o álbum foi produzido principalmente pela própria banda, assim como pelo produtor inglês de hip-hop Alex da Kid e Brandon Darner do grupo de indie rock americano The Envy Corps. Foi masterizado por Joe LaPorta. De acordo com o vocalista Dan Reynolds, o álbum levou três anos para ser concluído, com seis das faixas do álbum sendo lançadas anteriormente em vários EPs. Musicalmente, Night Visions exibe influências do folk, hip hop e pop.
+                            </p>
+                            <p>
+                                O álbum recebeu críticas geralmente mistas dos críticos musicais após o lançamento. No entanto, ele estreou no número dois na Billboard 200 nos Estados Unidos, vendendo mais de 83.000 cópias em sua primeira semana, onde já foi certificado com dupla platina. Ele também atingiu o pico das paradas Billboard Alternative Albums e Rock Albums, bem como entre os dez melhores álbuns na Austrália, Áustria, Canadá, Alemanha, Irlanda, México, Holanda, Nova Zelândia, Noruega, Portugal, Suécia, Suíça, e Reino Unido. Night Visions apareceu no Top 10 da Billboard 200 em 2012, 2013 e 2014. O álbum se tornou o quarto álbum mais vendido de 2013 nos EUA. Foi nomeado para o Juno Award de International Album of the Year (2014) e ganhou o Billboard Music Award de Top Rock Album (2014).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="singles" >
+                <div class="row">
+                    <img src="img/demons.jpg" id="imgSingles" alt="">
+                    <div class="col-7">
+                        <div class="display-flex">
+                            <h1 class="h1Night">Top 5 Musicas do album <br><span>Night Visions</span></h1>
+                            <a href="https://open.spotify.com/album/1zcNZa89FXNruaesVKiVeu?si=2ffZCQzbSaa9iwIItGkjhw" target="_blank">
+                                <button class="btn spotify"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="table-singles">
+                            <table>                                
+                                <tr onclick="musicasNightVisions(1)">
+                                    <td class="tdId"> 1.</td>
+                                    <td class="tdNome">Radioactive</td>
+                                    <td>3:06</td>
+                                </tr>
+                                <tr onclick="musicasNightVisions(2)">
+                                    <td class="tdId">2.</td>
+                                    <td class="tdNome">Demons</td>
+                                    <td>2:57</td>
+                                </tr>
+                                <tr onclick="musicasNightVisions(3)">
+                                    <td class="tdId">3.</td>
+                                    <td class="tdNome">It's Time</td>
+                                    <td>4:00</td>
+                                </tr>
+                                <tr onclick="musicasNightVisions(4)">
+                                    <td class="tdId">4.</td>
+                                    <td class="tdNome">Bleeding Out</td>
+                                    <td>3:43</td>
+                                </tr>
+                                <tr onclick="musicasNightVisions(5)">
+                                    <td class="tdId">5.</td>
+                                    <td class="tdNome">On The Top Of The World</td>
+                                    <td>3:12</td>
+                                </tr>                                
+                            </table>
+                        </div>
+                    </div>
+                </div>                
+                <div class="display-flex" id="estrelas">
+                    <div class="estrelas">
+                        <span id="avaliacao"></span>
+                        <div id="estrelaUnica"></div>
+                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Album Smoke + Mirrors -->
+        <div id="smokeMirrors">
+            <h1 class="text-center">Smoke + Mirrors</h1>
+            <div class="row">                
+                <div class="col-12">
+                    <div class="container">
+                        <div class="texto">
+                            <p>
+                                Smoke + Mirrors é o segundo álbum de estúdio pela American pop rock band Imagine Dragons . O álbum foi gravado durante 2014 no estúdio caseiro da banda em Las Vegas , Nevada . Produzido por integrantes da banda junto com o produtor inglês de hip-hop Alexander Grant, conhecido pelo apelido de Alex da Kid , o álbum foi lançado pela Interscope Records epela gravadora Grant's KIDinaKORNER em 17 de fevereiro de 2015, nos Estados Unidos.
+                            </p>
+                            <p>
+                                O álbum recebeu críticas geralmente mistas dos críticos musicais após o lançamento. No entanto, estreou no número um na Billboard 200 nos Estados Unidos, movimentando mais de 172.000 unidades, e também estreou no número um no UK Albums Chart e no Canadian Albums Chart. Desde então, foi certificado ouro nos Estados Unidos, Reino Unido, México e Brasil. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="singles" >
+                <div class="row">
+                    <img src="img/gold.jpg" id="imgSingles1" alt="">
+                    <div class="col-7">
+                        <div class="display-flex">
+                            <h1 class="h1Smo">Top 5 Musicas do Album <br><span class="smoMir">Smoke + Mirrors</span></h1>
+                            <a href="https://open.spotify.com/album/6rRFeV6xigfNyPoZ6YqcoW?si=PRHUSr1_SkS7TBsn2E2Mow" target="_blank">
+                                <button class="btn spotify"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="table-singles">
+                            <table>                                
+                                <tr onclick="musicasSmokeMirrors(1)">
+                                    <td class="tdId"> 1.</td>
+                                    <td class="tdNome">Shots</td>
+                                    <td>3:52</td>
+                                </tr>
+                                <tr onclick="musicasSmokeMirrors(2)">
+                                    <td class="tdId">2.</td>
+                                    <td class="tdNome">I Bet My Life</td>
+                                    <td>3:12</td>
+                                </tr>
+                                <tr onclick="musicasSmokeMirrors(3)">
+                                    <td class="tdId">3.</td>
+                                    <td class="tdNome">Gold</td>
+                                    <td>3:36</td>
+                                </tr>
+                                <tr onclick="musicasSmokeMirrors(4)">
+                                    <td class="tdId">4.</td>
+                                    <td class="tdNome">Smoke and Mirrors</td>
+                                    <td>4:20</td>
+                                </tr>
+                                <tr onclick="musicasSmokeMirrors(5)">
+                                    <td class="tdId">5.</td>
+                                    <td class="tdNome">Friction</td>
+                                    <td>3:12</td>
+                                </tr>                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="display-flex" id="estrelas1">
+                    <div class="estrelas">
+                        <span>4.0</span>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()"  aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Album Evolve -->
+        <div id="evolve">
+            <div class="text-center titleEvolve">
+                <h1 class="eEvolve">E</h1><h1 class="volveEvole">volVe</h1>
+            </div>
+            <div class="row">                
+                <div class="col-12">
+                    <div class="container">
+                        <div class="texto">
+                            <p>
+                                Com as turnês e uma fanbase que só aumentava, em 2017, definitivamente, o Imagine Dragons já estava consolidado com um dos maiores grupos da década.
+                                Nesse mesmo ano, a banda lançou seu terceiro álbum de estúdio, o Evolve (estilizado como ƎVOLVE) que, como o nome diz, representa uma evolução dos músicos.
+                            </p>
+                            <p>
+                                Trazendo produtores acostumados a trabalhar com artistas pop, o disco relembrava a essência do conjunto, com melodias diversas, mas também com faixas cheias de energia e que emplacaram nas rádios e no coração do público.
+                            </p>
+                            <p>
+                                Outro detalhe importante de destacar é o tom mais profundo das canções, nas quais o vocalista Dan Reynolds expôs sua luta contra a depressão, a espondilite anquilosante (doença autoimune) e falou sobre experiências íntimas nas letras, tornando singles como Believer hinos motivacionais.
+                            </p>
+                            <p>
+                                Mais confortável, o Imagine Dragons, principalmente na figura de seu líder, mostrou que escrever músicas era um processo terapêutico e essa liberdade é vista nos singles, cada um com a sua personalidade e mensagem própria. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="singles" >
+                <div class="row">
+                    <img src="img/believer.jpg" id="imgSingles2" alt="">
+                    <div class="col-7">
+                        <div class="display-flex">
+                            <h1 class="h1Evo">Top 5 Musicas do Album <br><span class="evo">Evolve</span></h1>
+                            <a href="https://open.spotify.com/album/33pt9HBdGlAbRGBHQgsZsU?si=R-8NmFWzSReZhpfZOozNrA" target="_blank">
+                                <button class="btn spotify"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="table-singles">
+                            <table>                                
+                                <tr onclick="musicasEvolve(1)">
+                                    <td class="tdId"> 1.</td>
+                                    <td class="tdNome">Believer</td>
+                                    <td>3:34</td>
+                                </tr>
+                                <tr onclick="musicasEvolve(2)">
+                                    <td class="tdId">2.</td>
+                                    <td class="tdNome">Whatever It Takes</td>
+                                    <td>3:21</td>
+                                </tr>
+                                <tr onclick="musicasEvolve(3)">
+                                    <td class="tdId">3.</td>
+                                    <td class="tdNome">Walking The Wire</td>
+                                    <td>3:52</td>
+                                </tr>
+                                <tr onclick="musicasEvolve(4)">
+                                    <td class="tdId">4.</td>
+                                    <td class="tdNome">Mouth Of The River</td>
+                                    <td>3:41</td>
+                                </tr>
+                                <tr onclick="musicasEvolve(5)">
+                                    <td class="tdId">5.</td>
+                                    <td class="tdNome">Thunder</td>
+                                    <td>3:07</td>
+                                </tr>                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="display-flex" id="estrelas2">
+                    <div class="estrelas">
+                        <span>4.0</span>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()"  aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Album Origins -->
+        <div id="origins">
+            <div class="text-center">
+                <h1>Origins</h1>
+            </div>
+            <div class="row">                
+                <div class="col-12">
+                    <div class="container">
+                        <div class="texto">
+                            <p>
+                                Pensado como uma continuidade do disco anterior, o Origins ganhou vida em 2018, mantendo as características visuais, no entanto com um toque a mais.
+                                As semelhanças começam logo na primeira música do álbum, a potente Natural, que poderia muito bem fazer parte do Evolve.
+                            </p>
+                            <p>
+                                As experiências de Dan Reynolds marcam presença nas composições, que voltam a tocar em questões existenciais e de confiança. 
+                            </p>
+                            <p>
+                                Mais confortável, o Imagine Dragons, principalmente na figura de seu líder, mostrou que escrever músicas era um processo terapêutico e essa liberdade é vista nos singles, cada um com a sua personalidade e mensagem própria. 
+                            </p>
+                            <p>
+                                Novamente um sucesso entre o público, o Origins é memorável pela diversidade de estilos dentro de um mesmo projeto.
+                            </p>
+                            <p>
+                                Por exemplo, ao mesmo tempo que temos uma faixa mais melódica como Bad Liar, o álbum apresenta uma canção com versos rápidos e pegada divertida como Zero. Algo que só uma banda que alcançou seu auge consegue fazer!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="singles" >
+                <div class="row">
+                    <img src="img/west.jpg" id="imgSingles3" alt="">
+                    <div class="col-7">
+                        <div class="display-flex">
+                            <h1 class="h1Ori">Top 5 Musicas do Album <br><span class="ori">Origins</span></h1>
+                            <a href="https://open.spotify.com/album/3JfSxDfmwS5OeHPwLSkrfr?si=wZbSo8LbQ0y__KBiFOoxAw" target="_blank">
+                                <button class="btn spotify"><i class="fa fa-spotify" aria-hidden="true"></i> Escutar Restante</button>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-5">
+                        <div class="table-singles">
+                            <table>                                
+                                <tr onclick="musicasOrigins(1)">
+                                    <td class="tdId"> 1.</td>
+                                    <td class="tdNome">Natural</td>
+                                    <td>3:09</td>
+                                </tr>
+                                <tr onclick="musicasOrigins(2)">
+                                    <td class="tdId">2.</td>
+                                    <td class="tdNome">Birds</td>
+                                    <td>3:39</td>
+                                </tr>
+                                <tr onclick="musicasOrigins(3)">
+                                    <td class="tdId">3.</td>
+                                    <td class="tdNome">Bad Liar</td>
+                                    <td>4:20</td>
+                                </tr>
+                                <tr onclick="musicasOrigins(4)">
+                                    <td class="tdId">4.</td>
+                                    <td class="tdNome">Boomerang</td>
+                                    <td>3:07</td>
+                                </tr>
+                                <tr onclick="musicasOrigins(5)">
+                                    <td class="tdId">5.</td>
+                                    <td class="tdNome">Zero</td>
+                                    <td>3:30</td>
+                                </tr>                                
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="display-flex" id="estrelas3">
+                    <div class="estrelas">
+                        <span>4.0</span>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()"  aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News section -->
+    <section class="novidades" id="novidades">
+        <div class="container">
+            <h1 class="text-center">Novidades</h1>
+            <div id="recentes">
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card-news">
+                            <h2 class="text-center">Clipe Cutthroat</h2>
+                            <div class="row">
+                                <img src="img/noticias/cutthroat.jpg" alt="">
+                                <div class="texto">
+                                    <p>
+                                        Imagine Dragons estão de volta com suas primeiras músicas novas desde o fim de 2018, quando lançaram o bem sucedido álbum "Origins", o quarto trabalho de estúdio deles. "Follow You" e "Cutthroat" trazem a mistura de percussão forte e os vocais emotivos de Dan Reynolds que tanto agrada ao enorme fã clube do quarteto.
+                                    </p>    
+                                    <h3 class="centralizar">
+                                        05/05/2021
+                                    </h3>                         
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+                    <div class="col-6">
+                        <div class="card-news">
+                            <h2 class="text-center">Clipe Follow You</h2>
+                            <div class="row">
+                                <img src="img/noticias/clipe.jpg" alt="">
+                                <div class="texto">
+                                    <p>
+                                        Imagine Dragons estão de volta com suas primeiras músicas novas desde o fim de 2018, quando lançaram o bem sucedido álbum "Origins", o quarto trabalho de estúdio deles. "Follow You" e "Cutthroat" trazem a mistura de percussão forte e os vocais emotivos de Dan Reynolds que tanto agrada ao enorme fã clube do quarteto.
+                                    </p>    
+                                    <h3 class="centralizar">
+                                        16/03/2021
+                                    </h3>                         
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>
+                </div>
+                <div class="row" id="buttonVerMaisNoticias">
+                    <div class="display-flex ver-mais">
+                        <button class="btn btn-padrao" onclick="verMaisNoticias()">Ver mais...</button>
+                    </div>
+                </div>
+            </div>
+            <div id="antigas">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card-news">
+                            <h2 class="text-center">Novos lancamentos</h2>
+                            <div class="row">
+                                <img src="img/noticias/follow.jpg" alt="">
+                                <div class="texto">
+                                    <p>
+                                        Imagine Dragons estão de volta com suas primeiras músicas novas desde o fim de 2018, quando lançaram o bem sucedido álbum "Origins", o quarto trabalho de estúdio deles. "Follow You" e "Cutthroat" trazem a mistura de percussão forte e os vocais emotivos de Dan Reynolds que tanto agrada ao enorme fã clube do quarteto.
+                                    </p>            
+                                    <h3 class="centralizar">
+                                        12/03/2021
+                                    </h3>        
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>                    
+                </div>
+                <div class="row" id="buttonVerMenosNoticias">
+                    <div class="display-flex ver-mais">
+                        <button class="btn btn-padrao" onclick="verMaisNoticias()">Ver menos...</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Chat section -->
+    <section id="sessaoComentarios" class="comentarios"></section>
+
+    <!-- Back to top -->
+    <a href="#inicio">
+        <div class="ancora">
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        </div>
+    </a>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <span>copyright <a href="https://github.com/LucasTeixeira793" target="_blank">Lucas Menezes Teixeira</a></span>
+    </footer>
+
+    <!-- Scripts -->
+    <div class="row display-flex" id="playMusic"></div>
+    <script src="https://kit.fontawesome.com/47509d94ad.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
