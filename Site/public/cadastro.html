@@ -64,6 +64,10 @@
     var valNick = 0;
     var valEma = 0;
     var valsen = 0;
+    if(sessionStorage.getItem('id') > 0){
+        window.location.href = "index.html";
+    }else{
+
     function validar(campo){        
         var nomeCadastro = inputNomeCadastro.value;
         var nicknameCadastro = inputNicknameCadastro.value;
@@ -138,15 +142,10 @@
         }
     }
 
-function cadastrar() {
-    var senhaCadastro = inputSenha.value;
-    var confirmaSenhaCadastro = inputConfirmaSenha.value;
+    function cadastrar() {
+        var senhaCadastro = inputSenha.value;
+        var confirmaSenhaCadastro = inputConfirmaSenha.value;
 
-    if (senhaCadastro != confirmaSenhaCadastro) {
-        
-    }else{
-
-    }
         aguardar();
         var formulario = new URLSearchParams(new FormData(form_cadastro));
         fetch("/usuarios/cadastrar", {
@@ -180,5 +179,6 @@ function cadastrar() {
         btn_entrar.disabled = false;
         div_erro.style.display='block';
     }
+}
 
 </script>

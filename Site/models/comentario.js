@@ -12,11 +12,6 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoIncrement: true
-		},		
-		dataComentario: {
-			field: 'dataComentario',
-			type: DataTypes.DATE,
-			allowNull: false
 		},
 		comentario: {
 			field: 'comentario',

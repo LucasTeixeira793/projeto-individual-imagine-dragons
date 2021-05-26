@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Usuario = require('../models').Usuario;
+var comentario = require('../models').Comentario;
 
 let sessoes = [];
 
@@ -52,7 +53,7 @@ router.post('/cadastrar', function(req, res, next) {
 		console.error(erro);
 		res.status(500).send(erro.message);
   	});
-});
+}); 
 
 
 /* Verificação de usuário */

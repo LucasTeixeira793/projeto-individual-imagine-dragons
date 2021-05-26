@@ -25,8 +25,6 @@ if (sessionStorage.getItem('logado') == 1) {
     usuarioLogado = 0;
 }
 
-
-
 /* ---------------------------------------------------------------------------------- */
 /* Componentes */
 /* ---------------------------------------------------------------------------------- */
@@ -35,38 +33,38 @@ if (sessionStorage.getItem('logado') == 1) {
 var navbarUserDeslogado = `
 <a href="index.html#inicio"><img src="img/logo.png" class="logo" alt=""></a>
 <div class="wave-header">
-<center>
-<span id="musicaHeader" onclick="stopMusic()"></span><br>
-</center>
-<img src="img/wave.gif" onclick="stopMusic()" id="wave" alt="">
+    <center>
+        <span id="musicaHeader" onclick="stopMusic()"></span><br>
+    </center>
+    <img src="img/wave.gif" onclick="stopMusic()" id="wave" alt="">
 </div>
 <ul>
-<li><a href="index.html#inicio">Home</a></li>
-<li><a href="index.html#novidades">Notícias</a></li>
-<li><a href="sobre.html">Sobre</a></li>
+    <li><a href="index.html#inicio">Home</a></li>
+    <li><a href="index.html#novidades">Notícias</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
 
-<!-- Deslogado -->
-<li class="navbarDeslogado"><a href="cadastro.html">Cadastrar</a></li>
-<li class="navbarDeslogado"><a href="login.html">Login</a></li>
+    <!-- Deslogado -->
+    <li class="navbarDeslogado"><a href="cadastro.html">Cadastrar</a></li>
+    <li class="navbarDeslogado"><a href="login.html">Login</a></li>
 
 </ul>
 `;
 var navbarUserLogado = `
 <a href="index.html#inicio"><img src="img/logo.png" class="logo" alt=""></a>
 <div class="wave-header">
-<center>
-<span id="musicaHeader" onclick="stopMusic()"></span><br>
-</center>
-<img src="img/wave.gif" onclick="stopMusic()" id="wave" alt="">
+    <center>
+        <span id="musicaHeader" onclick="stopMusic()"></span><br>
+    </center>
+    <img src="img/wave.gif" onclick="stopMusic()" id="wave" alt="">
 </div>
 <ul>
-<li><a href="index.html#inicio">Home</a></li>
-<li><a href="index.html#novidades">Notícias</a></li>
-<li><a href="sobre.html">Sobre</a></li>
+    <li><a href="index.html#inicio">Home</a></li>
+    <li><a href="index.html#novidades">Notícias</a></li>
+    <li><a href="sobre.html">Sobre</a></li>
 
-<!-- Logado -->
-<li id="navbarLogado" style="font-family: Monserrat; cursor: pointer;">Olá <b>${sessionStorage.getItem('nome')}</b></li>
-<li class="navbarLogado" style="font-family: Monserrat; cursor: pointer;"><a onclick="logoff()">Sair</a></li>
+    <!-- Logado -->
+    <li id="navbarLogado" style="font-family: Monserrat; cursor: pointer;">Olá <b>${sessionStorage.getItem('nome')}</b></li>
+    <li class="navbarLogado" style="font-family: Monserrat; cursor: pointer;"><a onclick="logoff()">Sair</a></li>
 </ul>
 `;
 
@@ -82,7 +80,7 @@ var comentariosLogado = `
             </div>
         </div>
         <div class="comentarios-conteudo">
-            <div class="comentario-unico">
+            <div class="comentario-unico" id="feed_container">
                 <div class="row">
                     <div class="col-10">
                         <span id="nickname" class="nickname">@anonimous123</span><br>
@@ -102,16 +100,17 @@ var comentariosLogado = `
         </div>
         <div class="comentarios-rodape">
             <div class="row">
-                <div class="col-10">
-                    <input type="text" placeholder="Digite seu comentário aqui...">
-                </div>
-                <div class="col-2 display-flex">
-                    <button><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                </div>
+                <form id="form_publicar" method="post" onsubmit="return publicar()">
+                    <div class="col-10">
+                        <input type="text" name="inputComentario" placeholder="Digite seu comentário aqui...">
+                    </div>
+                    <div class="col-2 display-flex">
+                        <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                    </div>
+                </form>
             </div>
         </div>
 `;
-
 var comentariosDeslogado = `
 <div class="comentarios-cabecalho">
             <div class="row">
@@ -189,6 +188,7 @@ function albuns(album){
             idAlbumOrigins.style.transform = "scale(1)";
             nightvisions.style.display = "none";
             smokeMirrors.style.display = "none";
+            estrelas.style.display = "none";
             evolve.style.display = "none";
             origins.style.display = "none";
             playMusic.innerHTML = "";
@@ -237,7 +237,6 @@ function musicasNightVisions(musica){
 
 function musicasSmokeMirrors(musica){
     if(playMusic.innerHTML == ""){
-        estrelas1.style.display = "flex";
         if(musica == 1){
             playMusic.innerHTML = `<iframe src="https://open.spotify.com/embed/track/2h6HdN3oPr4JijIQV29hv1" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
             nomeMusica = "Shots";
@@ -259,19 +258,20 @@ function musicasSmokeMirrors(musica){
             nomeMusica = "Friction";
         }
         wave.style.display = "flex";
+        adicionarEstrelas();
+        estrelas.style.display = "flex";
         musicaHeader.innerHTML = nomeMusica;
     }else{
         musicaHeader.innerHTML = "";
         wave.style.display = "none";
         playMusic.innerHTML = "";
-        estrelas1.style.display = "none";
+        estrelas.style.display = "none";
         fecharComentario()
     }  
 }
 
 function musicasEvolve(musica){
     if(playMusic.innerHTML == ""){
-        estrelas2.style.display = "flex";
         if(musica == 1){
             playMusic.innerHTML = `<iframe src="https://open.spotify.com/embed/track/0pqnGHJpmpxLKifKRmU6WP" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
             nomeMusica = "Believer";
@@ -293,19 +293,20 @@ function musicasEvolve(musica){
             nomeMusica = "Thunder";
         }
         wave.style.display = "flex";
+        adicionarEstrelas();
+        estrelas.style.display = "flex";
         musicaHeader.innerHTML = nomeMusica;
     }else{
         wave.style.display = "none";
         musicaHeader.innerHTML = "";
         playMusic.innerHTML = "";
-        estrelas2.style.display = "none";
+        estrelas.style.display = "none";
         fecharComentario()
     }  
 }
 
 function musicasOrigins(musica){
     if(playMusic.innerHTML == ""){
-        estrelas3.style.display = "flex";
         if(musica == 1){
             playMusic.innerHTML = `<iframe src="https://open.spotify.com/embed/track/2FY7b99s15jUprqC0M5NCT" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
             nomeMusica = "Natural";
@@ -327,12 +328,14 @@ function musicasOrigins(musica){
             nomeMusica = "Zero";
         }
         wave.style.display = "flex";
+        adicionarEstrelas();
+        estrelas.style.display = "flex";
         musicaHeader.innerHTML = nomeMusica;
     }else{
         wave.style.display = "none";
         musicaHeader.innerHTML = "";
         playMusic.innerHTML = "";
-        estrelas3.style.display = "none";
+        estrelas.style.display = "none";
         fecharComentario()
     }  
 }
@@ -344,10 +347,10 @@ function musicasOrigins(musica){
 /* Estrelas */
 /* ---------------------------------------------------------------------------------- */
 
-    var listaAvaliacoes = [4,1];
+    var listaAvaliacoes = [4,1,5,5,3,5,5,4,5,4,4,5,4,3];
     function adicionarEstrelas(){
-        estrelaUnica.innerHTML = ""
-        var contador = 1
+        estrelaUnica.innerHTML = "";
+        var contador = 1;
         var mediaAvaliacoes = calcularMedia();
         avaliacao.innerHTML = mediaAvaliacoes.toFixed(1);
         mediaAvaliacoes = mediaAvaliacoes.toFixed(0);
@@ -372,12 +375,17 @@ function musicasOrigins(musica){
     }
 
     function cadastrarAvaliacao(estrela){
-        listaAvaliacoes.push(estrela);
-        adicionarEstrelas();    
-        for(var contador = 1; contador <= estrela; contador++){
-            document.getElementById(`iconeEstrela${contador}`).style.color = '#fdf201';
+        if (usuarioLogado == 1) {
+            listaAvaliacoes.push(estrela);
+            adicionarEstrelas();    
+            for(var contador = 1; contador <= estrela; contador++){
+                document.getElementById(`iconeEstrela${contador}`).style.color = '#ff8100';
+            }
+            var contador = 0;
+        }else{
+            alert("Faça login para poder avaliar esta música");
+            window.location.href = "login.html";
         }
-        var contador = 0;
     }
 
 /* ---------------------------------------------------------------------------------- */
@@ -453,12 +461,18 @@ function entrar() {
 
                 resposta.json().then(json => {
                     
+                    sessionStorage.id_usuario_meuapp = json.idUser;
                     sessionStorage.login_usuario_meuapp = json.email;
+                    sessionStorage.nickname_usuario_meuapp = json.nickname;
                     sessionStorage.nome_usuario_meuapp = json.nomeUser;
+                    idUsuarioSessao = sessionStorage.id_usuario_meuapp = json.idUser;
+                    nicknameUsuarioSessao = sessionStorage.nickname_usuario_meuapp = json.nickname;
                     emailUsuarioSessao = sessionStorage.login_usuario_meuapp = json.email;
                     nomeUsuarioSessao = sessionStorage.nome_usuario_meuapp = json.nomeUser;
-                    alert('Você está logado');
+                    alert('Bem vindo '+ nomeUsuarioSessao );
                     sessionStorage.setItem('logado', 1);
+                    sessionStorage.setItem('id', idUsuarioSessao);
+                    sessionStorage.setItem('nickname', nicknameUsuarioSessao);
                     sessionStorage.setItem('nome', nomeUsuarioSessao);
                     sessionStorage.setItem('email', emailUsuarioSessao);
                     window.location.href = 'index.html';

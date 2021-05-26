@@ -19,7 +19,7 @@
         <img src="img/banner2.png" class="banner-img" alt="">        
         <div class="ouvintes">
             <h1>Ouvintes mensais:</h1>
-            <h3>40.114.997</h3>
+            <h3>39.785.064</h3>
         </div> 
     </section>
     
@@ -123,15 +123,9 @@
                         </div>
                     </div>
                 </div>                
-                <div class="display-flex" id="estrelas">
-                    <div class="estrelas">
-                        <span id="avaliacao"></span>
-                        <div id="estrelaUnica"></div>
-                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()" aria-hidden="true"></i>
-                    </div>
-                </div>
             </div>
         </div>
+        
 
         <!-- Album Smoke + Mirrors -->
         <div id="smokeMirrors">
@@ -192,18 +186,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="display-flex" id="estrelas1">
-                    <div class="estrelas">
-                        <span>4.0</span>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()"  aria-hidden="true"></i>
-                    </div>
-                </div>
+                </div>                
             </div>
         </div>
 
@@ -275,18 +258,7 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="display-flex" id="estrelas2">
-                    <div class="estrelas">
-                        <span>4.0</span>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()"  aria-hidden="true"></i>
-                    </div>
-                </div>
+                </div>                
             </div>
         </div>
 
@@ -361,17 +333,15 @@
                             </table>
                         </div>
                     </div>
-                </div>
-                <div class="display-flex" id="estrelas3">
-                    <div class="estrelas">
-                        <span>4.0</span>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                        <i class="fa fa-comments icone-comentario" onclick="abrirComentario()"  aria-hidden="true"></i>
-                    </div>
+                </div>               
+            </div>
+        </div>
+        <div class="row">
+            <div class="display-flex" id="estrelas">
+                <div class="estrelas">
+                    <span id="avaliacao"></span>
+                    <div id="estrelaUnica"></div>
+                    <i class="fa fa-comments icone-comentario" onclick="abrirComentario()" aria-hidden="true"></i>
                 </div>
             </div>
         </div>
@@ -473,3 +443,96 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+<script>
+
+    function publicar() {
+        console.log("entrei!")
+        var formulario = new URLSearchParams(new FormData(form_publicar));
+        var idUsuario = sessionStorage.getItem('id');
+        fetch(`/comentarios/publicar/${idUsuario}`, {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+                obterPublicacoes();
+
+            } else {
+                console.log('Erro ao publicar!');
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+
+    function atualizarFeed(publicacoes) {
+        var feed = document.getElementById("feed_container");
+        feed.innerHTML = "";
+        for (let i = 0; i < publicacoes.length; i++) {
+            var publicacao = publicacoes[i];
+
+            var divRow = document.createElement("div")
+            var divCol10 = document.createElement("div")
+            var spanNickname = document.createElement("span")
+            var spanComentario = document.createElement("span")
+
+            spanNickname.innerHTML = `@${publicacao.nickname}: <br>`;
+            spanComentario.innerHTML = publicacao.comentario;
+
+            divRow.className = "row";
+            divCol10.className = "col-10";
+            spanNickname.className = "nickname";
+
+            divRow.appendChild(divCol10);
+            divCol10.appendChild(spanNickname);
+            divCol10.appendChild(spanComentario);
+
+            feed.appendChild(divRow);
+        }
+    }
+
+    function obterPublicacoes() {
+        aguardar();
+        fetch("/comentarios")
+        .then(resposta => {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                   
+                    atualizarFeed(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção das publicações: ${error.message}`);
+        });
+    }
+
+    function obterPublicacoesPorUsuario(idUsuario) {
+        fetch(`/comentarios/${idUsuario}`)
+        .then(resposta => {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    // alert(JSON.stringify(resposta))
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção das publicações do usuário: ${error.message}`);
+        });
+    }
+
+
+    verificar_autenticacao();
+
+</script>

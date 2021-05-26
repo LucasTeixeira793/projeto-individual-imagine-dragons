@@ -53,31 +53,37 @@
 
 <script>
 
-    function validarLogin(campo){        
-        var emailLogin = inputEmailLogin.value;
-        var senhaLogin = inputSenha.value;
-        switch (campo) {
-            case 'email':
-                if (emailLogin.length < 4 || emailLogin.indexOf(' ') != -1 || emailLogin.indexOf('@') == -1 || emailLogin.indexOf('.com') == -1) {
-                    inputEmailLogin.style.borderBottom = '2px solid red';
-                }else{
-                    inputEmailLogin.style.borderBottom = '2px solid #0077ff';
-                }
-                break;
+    if(sessionStorage.getItem('id') > 0){
+        window.location.href = "index.html";
+    }else{
 
-            case 'senha':
-                if (senhaLogin.length < 5) {
-                    inputSenha.style.borderBottom = '2px solid red';
-                }else{
-                    inputSenha.style.borderBottom = '2px solid #0077ff';
-                }
-                break;   
-                
-            default:
-                alert('deu erro')
-                break;
-        }      
-        
+        function validarLogin(campo){        
+            var emailLogin = inputEmailLogin.value;
+            var senhaLogin = inputSenha.value;
+            switch (campo) {
+                case 'email':
+                    if (emailLogin.length < 4 || emailLogin.indexOf(' ') != -1 || emailLogin.indexOf('@') == -1 || emailLogin.indexOf('.com') == -1) {
+                        inputEmailLogin.style.borderBottom = '2px solid red';
+                    }else{
+                        inputEmailLogin.style.borderBottom = '2px solid #0077ff';
+                    }
+                    break;
+    
+                case 'senha':
+                    if (senhaLogin.length < 5) {
+                        inputSenha.style.borderBottom = '2px solid red';
+                    }else{
+                        inputSenha.style.borderBottom = '2px solid #0077ff';
+                    }
+                    break;   
+                    
+                default:
+                    alert('deu erro')
+                    break;
+            }      
+            
+        }
     }
+
 
 </script>
