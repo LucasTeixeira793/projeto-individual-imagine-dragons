@@ -426,6 +426,7 @@ li #navbarLogado{
 }
 
 .singles .h1Night span{
+    font-size: 40px;
     text-shadow: 2px 2px 3px #714486;
 }
 
@@ -439,6 +440,7 @@ li #navbarLogado{
 }
 
 .singles .h1Evo{
+    font-size: 40px;
     text-shadow: 2px 2px 3px #0099ff;
 }
 
@@ -447,6 +449,7 @@ li #navbarLogado{
 }
 
 .singles .h1Ori{
+    font-size: 40px;
     text-shadow: 2px 2px 3px #00719e;
 }
 
@@ -711,7 +714,7 @@ li #navbarLogado{
     border-bottom: #1f1f1f 1px solid;
 }
 
-.comentarios-conteudo button{
+.comentarios_conteudo button{
     height: 40px;
     font-size: 20px;
     width: 10vw;
@@ -719,7 +722,7 @@ li #navbarLogado{
     align-items: center;
     justify-content: center;
 }
-.comentarios-conteudo{
+.comentarios_conteudo{
     min-height: 100%;
 }
 
@@ -763,6 +766,11 @@ li #navbarLogado{
     bottom: 0;
 }
 
+.comentarios-rodape form{
+    width: 100%;
+    display: inline-block;
+}
+
 .comentarios input{
     width: 100%;
     height: 100%;
@@ -772,12 +780,13 @@ li #navbarLogado{
 }
 
 .comentarios-rodape button{
+    margin-top: 8px;
+    float: left;
     cursor: pointer;
-    margin-top: 3px;
     border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
+    width: 50px;
+    height: 100%;
+    border-radius: 10px;
     color: #834a00;
     background-color: #ff9100;
 }
@@ -879,7 +888,56 @@ li #navbarLogado{
 
 /* Fim Cadastro */
 
+/* Modal Pefil */
+#sectionModalPerfil{
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: fixed;    
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.modalPerfil{
+    z-index: 12;
+    -webkit-animation: animate-div .5s;
+    padding: 30px;
+    background-color: white;
+    width: 500px;
+    border-radius: 10px;
+}
+.cabecalhoModal{
+    margin-bottom: 10px;
+}
+.spanDestaqueModal{
+    font-size: 20px;
+    font-weight: bold;
+}
+.cabecalhoModal button{
+    font-size: 15px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    -webkit-transition: .3s;
+}
+.cabecalhoModal button:hover{
+    color: orange;
+}
 
+.corpoModal{
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.corpoModal span{
+    font-size: 20px;
+}
+
+/* Fim Modal Perfil */
 
 
 /* ---------------------------------------------------------------------------------- */

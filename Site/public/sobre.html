@@ -104,7 +104,34 @@
     <div class="footer">
         <span>copyright <a href="https://github.com/LucasTeixeira793" target="_blank">Lucas Menezes Teixeira</a></span>
     </div>
-    <div class="row display-flex" id="playMusic"></div>
+
+    <section id="sectionModalPerfil">
+        <div class="modalPerfil">
+            <div class="row cabecalhoModal">
+                <div class="col-11">
+                    <span>Olá </span><span id="nomeUserModal" class="spanDestaqueModal">Lucas Teixeira</span>
+                </div>
+                <div class="col-1">
+                    <center>
+                        <button onclick="esconderPerfil()">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </center>
+                </div>
+            </div>
+            <hr>
+            <div class="corpoModal">
+                <span class="spanDestaqueModal">ID: </span>
+                <span id="idUserModal"></span><br>
+                <span class="spanDestaqueModal">Email: </span>
+                <span id="emailUserModal"></span><br>
+                <span class="spanDestaqueModal">Nickname: </span>
+                <div>
+                    <span>@</span><span id="nicknameUserModal"></span><br>               
+                </div>
+            </div>
+        </div>
+    </section>
     <script src="https://kit.fontawesome.com/47509d94ad.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
 </body>

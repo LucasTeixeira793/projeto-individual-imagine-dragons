@@ -6,7 +6,7 @@ https://codewithhugo.com/sequelize-data-types-a-practical-guide/
 */
 
 module.exports = (sequelize, DataTypes) => {
-    let Comentario = sequelize.define('Comentario',{
+    let Comentario = sequelize.define('comentario',{
 		idComentario: {
 			field: 'idComentario',
 			type: DataTypes.INTEGER,
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	}, 
 	{
-		tableName: 'Comentario', 
+		tableName: 'comentario', 
 		freezeTableName: true, 
 		underscored: true,
 		timestamps: false,

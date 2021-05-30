@@ -9,7 +9,7 @@
     <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="style.css">
 </head>
-<body>  
+<body onload="">  
 
     <!-- Header -->
     <header class="header" id="header"></header>  
@@ -18,8 +18,12 @@
     <section class="banner" id="inicio">
         <img src="img/banner2.png" class="banner-img" alt="">        
         <div class="ouvintes">
-            <h1>Ouvintes mensais:</h1>
-            <h3>39.785.064</h3>
+            <!-- <h1>Ouvintes mensais:</h1>
+            <h3>39.785.064</h3> -->
+            <h3>Saiba mais sobre a banda:</h3><br>
+            <a href="sobre.html">
+                <button class="btn btn-padrao">Saiba mais</button>
+            </a>
         </div> 
     </section>
     
@@ -337,11 +341,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="display-flex" id="estrelas">
+            <div class="display-flex" style="flex-direction: column;" id="estrelas">
+                <h3 id="nomeMusicaEstrelas" style="font-family: DevilBreezeBold;"></h3>
                 <div class="estrelas">
                     <span id="avaliacao"></span>
                     <div id="estrelaUnica"></div>
-                    <i class="fa fa-comments icone-comentario" onclick="abrirComentario()" aria-hidden="true"></i>
+                    <i class="fa fa-comments icone-comentario" onclick="abrirComentario(), obterPublicacoes()" aria-hidden="true"></i>
                 </div>
             </div>
         </div>
@@ -437,6 +442,35 @@
         <span>copyright <a href="https://github.com/LucasTeixeira793" target="_blank">Lucas Menezes Teixeira</a></span>
     </footer>
 
+    <!-- Modal Perfil -->
+    <section id="sectionModalPerfil">
+        <div class="modalPerfil">
+            <div class="row cabecalhoModal">
+                <div class="col-11">
+                    <span>Olá </span><span id="nomeUserModal" class="spanDestaqueModal">Lucas Teixeira</span>
+                </div>
+                <div class="col-1">
+                    <center>
+                        <button onclick="esconderPerfil()">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </button>
+                    </center>
+                </div>
+            </div>
+            <hr>
+            <div class="corpoModal">
+                <span class="spanDestaqueModal">ID: </span>
+                <span id="idUserModal"></span><br>
+                <span class="spanDestaqueModal">Email: </span>
+                <span id="emailUserModal"></span><br>
+                <span class="spanDestaqueModal">Nickname: </span>
+                <div>
+                    <span>@</span><span id="nicknameUserModal"></span><br>               
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Scripts -->
     <div class="row display-flex" id="playMusic"></div>
     <script src="https://kit.fontawesome.com/47509d94ad.js" crossorigin="anonymous"></script>
@@ -450,7 +484,7 @@
         console.log("entrei!")
         var formulario = new URLSearchParams(new FormData(form_publicar));
         var idUsuario = sessionStorage.getItem('id');
-        fetch(`/comentarios/publicar/${idUsuario}`, {
+        fetch("/comentarios", {
             method: "POST",
             body: formulario
         }).then(resposta => {
@@ -460,6 +494,7 @@
 
             } else {
                 console.log('Erro ao publicar!');
+                console.log(resposta)
                 resposta.text().then(texto => {
                     console.error(texto);
                 });
@@ -470,34 +505,36 @@
     }
 
     function atualizarFeed(publicacoes) {
-        var feed = document.getElementById("feed_container");
+        var feed = document.getElementById("comentarios_conteudo");
         feed.innerHTML = "";
-        for (let i = 0; i < publicacoes.length; i++) {
-            var publicacao = publicacoes[i];
+        for (let i = 0; i < publicacoes[0].length; i++) {
+            var publicacao = publicacoes[0];
 
-            var divRow = document.createElement("div")
-            var divCol10 = document.createElement("div")
-            var spanNickname = document.createElement("span")
-            var spanComentario = document.createElement("span")
-
-            spanNickname.innerHTML = `@${publicacao.nickname}: <br>`;
-            spanComentario.innerHTML = publicacao.comentario;
-
-            divRow.className = "row";
-            divCol10.className = "col-10";
-            spanNickname.className = "nickname";
-
-            divRow.appendChild(divCol10);
-            divCol10.appendChild(spanNickname);
-            divCol10.appendChild(spanComentario);
-
-            feed.appendChild(divRow);
+            feed.innerHTML += `
+            <div class="comentario-unico">
+                <div class="row">
+                    <div class="col-10">
+                        <span id="nickname" class="nickname">@${publicacao[i].nickname}</span><br>
+                        <span id="msg">${publicacao[i].comentario}</span>
+                    </div>
+                    <div class="col-2">
+                        <div class="centralizar" onclick="curtir(${publicacao[i].idComentario})" style="cursor: pointer;">
+                            <div>
+                                <i class="fa fa-heart-o" id="coracao${publicacao[i].idComentario}" aria-hidden="true"></i><br>
+                                <center>
+                                    <span id="ContadorCurtidas${publicacao[i].idComentario}">${publicacao[i].curtidas}</span>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
         }
     }
 
     function obterPublicacoes() {
-        aguardar();
-        fetch("/comentarios")
+        fetch(`/comentarios/${numMusicaAtiva}`)
         .then(resposta => {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
@@ -515,24 +552,34 @@
         });
     }
 
-    function obterPublicacoesPorUsuario(idUsuario) {
-        fetch(`/comentarios/${idUsuario}`)
+
+
+
+
+
+
+    function curtir(idComentario) {
+        fetch(`/curtidas/${idComentario}`)
         .then(resposta => {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    // alert(JSON.stringify(resposta))
+                   
+                    // atualizarFeed(resposta);
+                    alert("Aparentemente deu certo");
+                    return resposta;
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
         })
         .catch(function (error) {
-            console.error(`Erro na obtenção das publicações do usuário: ${error.message}`);
+            console.error(`Erro na obtenção das publicações: ${error.message}`);
         });
+
     }
 
-
-    verificar_autenticacao();
+    // verificar_autenticacao();
 
 </script>

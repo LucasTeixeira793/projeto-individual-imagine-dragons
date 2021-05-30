@@ -20,13 +20,13 @@ create table Avaliacao(
     foreign key (fkMusica) references Musica(idMusica),
     fkUser int,
     foreign key (fkUser) references Usuario(idUser),
+    dataAvaliacao timestamp default current_timestamp,
     avaliacao int,
-    primary key(fkMusica,fkUser)
+    primary key(fkMusica,fkUser,dataAvaliacao)
 );
 
 create table Comentario(
 	idComentario int primary key auto_increment,
-    dataComentario date,
     comentario varchar(200),
     fkUser int,
     foreign key (fkUser) references usuario(idUser),
@@ -38,19 +38,30 @@ create table Curtida(
 	fkUser int,
     foreign key (fkUser) references usuario(idUser),
     fkComentario int,
-    foreign key (fkComentario) references Comentario(idComentario)
+    foreign key (fkComentario) references Comentario(idComentario),
+    -- dataCurtida timestamp default current_timestamp,
+    primary key(fkUser,fkComentario)
 );
-
-create table Noticia(
-	idNoticia int primary key auto_increment,
-    tituloNoticia varchar(50),
-    textoNoticia text not null,
-    dataNoticia DATE
-);
+-- drop table curtida;
+insert into curtida value(1,2);
+select * from curtida;
 
 select * from usuario;
 select * from musica;
+select * from comentario;
 
+insert into comentario values
+	(null, 'Essa música é perfeita :)', 1, 1);
+insert into comentario values
+	(null, 'A letra dessa música machuca muito, mas mesmo assim é incrivel',1, 4);
+insert into comentario values
+	(null, 'Teste coment',1, 3);
+insert into comentario values
+	(null, 'Teste coment2',1, 3);
+insert into comentario values
+	(null, 'Teste coment3',2, 3);
+    
+    
 insert into musica values
 	(null,'Radioactive','Night Visions'),
     (null,'Demons','Night Visions'),
@@ -75,3 +86,4 @@ insert into musica values
     (null,'Bad Liar','Origins'),
     (null,'Boomerang','Origins'),
     (null,'Zero','Origins');
+

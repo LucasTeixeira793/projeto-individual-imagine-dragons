@@ -1,6 +1,7 @@
 var albumAtivo = 0;
 var numAlbum = 0;
 var nomeMusica = "";
+var numMusicaAtiva = 0;
 var comentarioAtivo = 0;
 var usuarioLogado = sessionStorage.getItem('logado');
 var navbar;
@@ -40,6 +41,7 @@ var navbarUserDeslogado = `
 </div>
 <ul>
     <li><a href="index.html#inicio">Home</a></li>
+    <li><a href="index.html#albuns">Álbuns</a></li>
     <li><a href="index.html#novidades">Notícias</a></li>
     <li><a href="sobre.html">Sobre</a></li>
 
@@ -59,12 +61,13 @@ var navbarUserLogado = `
 </div>
 <ul>
     <li><a href="index.html#inicio">Home</a></li>
+    <li><a href="index.html#albuns">Álbuns</a></li>
     <li><a href="index.html#novidades">Notícias</a></li>
     <li><a href="sobre.html">Sobre</a></li>
 
     <!-- Logado -->
-    <li id="navbarLogado" style="font-family: Monserrat; cursor: pointer;">Olá <b>${sessionStorage.getItem('nome')}</b></li>
-    <li class="navbarLogado" style="font-family: Monserrat; cursor: pointer;"><a onclick="logoff()">Sair</a></li>
+    <li id="navbarLogado" style="font-family: Monserrat; cursor: pointer;"><b onclick="mostrarPerfil()">Perfil</b></li>
+    <li class="navbarLogado" style="font-family: Monserrat; cursor: pointer;"><a onclick="logoff()"><b>Sair</b></a></li>
 </ul>
 `;
 
@@ -75,40 +78,23 @@ var comentariosLogado = `
                     <i class="fa fa-times" onclick="abrirComentario()" id="idFecharComentarios" aria-hidden="true"></i>
                 </div>
                 <div class="col-11">
-                    <span>Comentários:</span>
+                    <span>Comentários: <b id="nomeMusicaComent"></b></span>
                 </div>
             </div>
         </div>
-        <div class="comentarios-conteudo">
-            <div class="comentario-unico" id="feed_container">
-                <div class="row">
-                    <div class="col-10">
-                        <span id="nickname" class="nickname">@anonimous123</span><br>
-                        <span id="msg">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maxime possimus quod earum.</span>
-                    </div>
-                    <div class="col-2">
-                        <div class="centralizar">
-                            <div>
-                                <i class="fa fa-heart-o" aria-hidden="true"></i><br>
-                                <span>15</span>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-            </div>
+        <div class="comentarios_conteudo" id="comentarios_conteudo">
         </div>
         <div class="comentarios-rodape">
+        <form id="form_publicar" method="post" onsubmit="return publicar()">
             <div class="row">
-                <form id="form_publicar" method="post" onsubmit="return publicar()">
                     <div class="col-10">
                         <input type="text" name="inputComentario" placeholder="Digite seu comentário aqui...">
                     </div>
                     <div class="col-2 display-flex">
                         <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
                     </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
 `;
 var comentariosDeslogado = `
@@ -142,13 +128,23 @@ var comentariosDeslogado = `
 alterarNavbar(usuarioLogado);
 alterarComentarios(usuarioLogado);
 
-
-
 function stopMusic(){
     playMusic.innerHTML = "";
     wave.style.display = "none";
     musicaHeader.innerHTML = "";
     fecharComentario();
+}
+
+function mostrarPerfil(){
+    sectionModalPerfil.style.display = 'flex';
+    nomeUserModal.innerHTML = sessionStorage.getItem('nome');
+    idUserModal.innerHTML = sessionStorage.getItem('id');
+    emailUserModal.innerHTML = sessionStorage.getItem('email');
+    nicknameUserModal.innerHTML = sessionStorage.getItem('nickname');
+}
+
+function esconderPerfil(){
+    sectionModalPerfil.style.display = 'none';
 }
 
 /* ---------------------------------------------------------------------------------- */
@@ -201,6 +197,7 @@ function albuns(album){
 }
 
 function musicasNightVisions(musica){
+    numMusicaAtiva = musica;
     if(playMusic.innerHTML == ""){        
         if(musica == 1){
             playMusic.innerHTML = `<iframe id="iframeMusica" src="https://open.spotify.com/embed/track/62yJjFtgkhUrXktIoSjgP2" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
@@ -225,7 +222,11 @@ function musicasNightVisions(musica){
         estrelas.style.display = "flex";
         adicionarEstrelas();
         wave.style.display = "flex";
+        nomeMusicaEstrelas.innerHTML = nomeMusica;
         musicaHeader.innerHTML = nomeMusica;
+        nomeMusicaComent.innerHTML = nomeMusica;
+        obterPublicacoes();
+        abrirComentario();
     }else{
         wave.style.display = "none";
         musicaHeader.innerHTML = "";
@@ -236,6 +237,7 @@ function musicasNightVisions(musica){
 }
 
 function musicasSmokeMirrors(musica){
+    numMusicaAtiva = musica + 5;
     if(playMusic.innerHTML == ""){
         if(musica == 1){
             playMusic.innerHTML = `<iframe src="https://open.spotify.com/embed/track/2h6HdN3oPr4JijIQV29hv1" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
@@ -260,7 +262,11 @@ function musicasSmokeMirrors(musica){
         wave.style.display = "flex";
         adicionarEstrelas();
         estrelas.style.display = "flex";
+        nomeMusicaEstrelas.innerHTML = nomeMusica;
         musicaHeader.innerHTML = nomeMusica;
+        nomeMusicaComent.innerHTML = nomeMusica;
+        obterPublicacoes();
+        abrirComentario();
     }else{
         musicaHeader.innerHTML = "";
         wave.style.display = "none";
@@ -271,6 +277,7 @@ function musicasSmokeMirrors(musica){
 }
 
 function musicasEvolve(musica){
+    numMusicaAtiva = musica + 10;
     if(playMusic.innerHTML == ""){
         if(musica == 1){
             playMusic.innerHTML = `<iframe src="https://open.spotify.com/embed/track/0pqnGHJpmpxLKifKRmU6WP" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
@@ -295,7 +302,11 @@ function musicasEvolve(musica){
         wave.style.display = "flex";
         adicionarEstrelas();
         estrelas.style.display = "flex";
+        nomeMusicaEstrelas.innerHTML = nomeMusica;
         musicaHeader.innerHTML = nomeMusica;
+        nomeMusicaComent.innerHTML = nomeMusica;
+        obterPublicacoes();
+        abrirComentario();
     }else{
         wave.style.display = "none";
         musicaHeader.innerHTML = "";
@@ -306,6 +317,7 @@ function musicasEvolve(musica){
 }
 
 function musicasOrigins(musica){
+    numMusicaAtiva = musica + 15;
     if(playMusic.innerHTML == ""){
         if(musica == 1){
             playMusic.innerHTML = `<iframe src="https://open.spotify.com/embed/track/2FY7b99s15jUprqC0M5NCT" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`;
@@ -330,7 +342,11 @@ function musicasOrigins(musica){
         wave.style.display = "flex";
         adicionarEstrelas();
         estrelas.style.display = "flex";
+        nomeMusicaEstrelas.innerHTML = nomeMusica;
         musicaHeader.innerHTML = nomeMusica;
+        nomeMusicaComent.innerHTML = nomeMusica;
+        obterPublicacoes();
+        abrirComentario();
     }else{
         wave.style.display = "none";
         musicaHeader.innerHTML = "";
@@ -546,7 +562,7 @@ function entrar() {
     }
     
     function logoff() {
-        finalizar_sessao();
+        // finalizar_sessao();
         sessionStorage.clear();
         redirecionar_login();
     }
@@ -568,3 +584,18 @@ function entrar() {
     function finalizar_sessao() {
         fetch(`/usuarios/sair/${login_usuario}`, {cache:'no-store'}); 
     }
+
+
+/* ---------------------------------------------------------------------------------- */
+/* Curtida */
+/* ---------------------------------------------------------------------------------- */
+
+function darLike(idComentario){
+    var contadorLike = 0;
+    contadorLike ++;
+    document.getElementById("coracao" + idComentario).classList.remove("fa-heart-o");
+    document.getElementById("coracao" + idComentario).classList.add("fa-heart");
+    document.getElementById("coracao" + idComentario).style.color = "red";
+    ContadorCurtidas.innerHTML = contadorLike;
+    ContadorCurtidas.style.color = "red";
+}
