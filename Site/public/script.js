@@ -370,7 +370,7 @@ var ultimaAvaliacao = 0;
 function mostrarEstrelas(mediaAvaliacoes) {
     estrelaUnica.innerHTML = "";
     var contador = 1;
-    var media =mediaAvaliacoes[0];
+    var media = mediaAvaliacoes[0];
     media = Number(media[0].media);
     avaliacao.innerHTML = media.toFixed(1);
     media = media.toFixed(0);
@@ -393,27 +393,27 @@ function adicionarEstrelas(estrela) {
         var idUsuario = Number(sessionStorage.getItem('id'));
 
         console.log("entrei em adicionarEstrelas!");
-       
+
         fetch(`/avaliacoes/cadastrar/${numMusicaAtiva}/${idUsuario}/${estrela}`).then((resposta) => {
-        if (resposta.ok) {
-            
-            for (var contador = 1; contador <= estrela; contador++) {
-                document.getElementById(`iconeEstrela${contador}`).style.color = '#ff8100';
+            if (resposta.ok) {
+
+                for (var contador = 1; contador <= estrela; contador++) {
+                    document.getElementById(`iconeEstrela${contador}`).style.color = '#ff8100';
+                }
+                var contador = 0;
+                ultimaAvaliacao = estrela;
+                calcularMediaEstrelas(numMusicaAtiva);
+
+
+            } else {
+                obterPublicacoes();
+                console.log("Erro ao publicar!");
+                console.log(resposta);
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
             }
-            var contador = 0;
-            ultimaAvaliacao = estrela;
-            calcularMediaEstrelas(numMusicaAtiva);
-
-
-        } else {
-            obterPublicacoes();
-            console.log("Erro ao publicar!");
-            console.log(resposta);
-            resposta.text().then((texto) => {
-                console.error(texto);
-            });
-        }
-    });
+        });
 
         return false;
 
@@ -583,11 +583,163 @@ function obterPublicacoes() {
 
 
 /* ---------------------------------------------------------------------------------- */
+/* Cadastro */
+/* ---------------------------------------------------------------------------------- */
+
+var valNome = 0;
+var valNick = 0;
+var valEma = 0;
+var valsen = 0;
+
+function validar(campo) {
+    var nomeCadastro = inputNomeCadastro.value;
+    var nicknameCadastro = inputNicknameCadastro.value;
+    var emailCadastro = inputEmailCadastro.value;
+    var senhaCadastro = inputSenha.value;
+    var confirmaCadastro = inputConfirmaSenha.value;
+    switch (campo) {
+        case 'nome':
+            if (nomeCadastro.length < 3) {
+                inputNomeCadastro.style.borderBottom = '2px solid red';
+                valNome = 0;
+            }
+            else {
+                valNome = 1;
+                inputNomeCadastro.style.borderBottom = '2px solid #0077ff';
+            }
+
+            break;
+
+        case 'nickname':
+            if (nicknameCadastro < 4 || nicknameCadastro.indexOf(' ') != -1) {
+                inputNicknameCadastro.style.borderBottom = '2px solid red';
+                valNick = 0;
+            } else {
+                valNick = 1;
+                inputNicknameCadastro.style.borderBottom = '2px solid #0077ff';
+            }
+            break;
+
+        case 'email':
+            if (emailCadastro.length < 4 || emailCadastro.indexOf(' ') != -1 || emailCadastro.indexOf('@') == -1 || emailCadastro.indexOf('.com') == -1) {
+                inputEmailCadastro.style.borderBottom = '2px solid red';
+                valEma = 0;
+            } else {
+                valEma = 1;
+                inputEmailCadastro.style.borderBottom = '2px solid #0077ff';
+            }
+            break;
+
+        case 'senha':
+            if (senhaCadastro.length < 6) {
+                inputSenha.style.borderBottom = '2px solid red';
+            } else {
+                inputSenha.style.borderBottom = '2px solid #0077ff';
+            }
+            break;
+
+        case 'confirma':
+            if (confirmaCadastro != senhaCadastro || confirmaCadastro.length < 6) {
+                inputSenha.style.borderBottom = '2px solid red';
+                inputConfirmaSenha.style.borderBottom = '2px solid red';
+                valSen = 0;
+            } else {
+                inputSenha.style.borderBottom = '2px solid #0077ff';
+                inputConfirmaSenha.style.borderBottom = '2px solid #0077ff';
+                valSen = 1;
+            }
+            break;
+        default:
+            alert('deu erro')
+            break;
+    }
+    desbloquearBotao();
+
+}
+
+function desbloquearBotao() {
+    if (valNome == 1 && valNick == 1 && valEma == 1 && valSen == 1) {
+        document.getElementById("btn_entrar").disabled = false;
+    } else {
+        document.getElementById("btn_entrar").disabled = true;
+    }
+}
+
+function cadastrar() {
+    var senhaCadastro = inputSenha.value;
+    var confirmaSenhaCadastro = inputConfirmaSenha.value;
+
+    aguardar();
+    var formulario = new URLSearchParams(new FormData(form_cadastro));
+    fetch("/usuarios/cadastrar", {
+        method: "POST",
+        body: formulario
+    }).then(function (response) {
+
+        if (response.ok) {
+
+            window.location.href = 'login.html';
+
+        } else {
+
+            console.log('Erro de cadastro!');
+            response.text().then(function (resposta) {
+                div_erro.innerHTML = resposta;
+            });
+            finalizar_aguardar();
+        }
+    });
+
+    return false;
+}
+
+function aguardar() {
+    btn_entrar.disabled = true;
+    div_erro.style.display = 'none';
+}
+
+function finalizar_aguardar() {
+    btn_entrar.disabled = false;
+    div_erro.style.display = 'block';
+}
+
+
+
+
+/* ---------------------------------------------------------------------------------- */
 /* Login */
 /* ---------------------------------------------------------------------------------- */
 
 var emailUsuarioSessao = '';
 var nomeUsuarioSessao = '';
+
+function validarLogin(campo) {
+    var emailLogin = inputEmailLogin.value;
+    var senhaLogin = inputSenha.value;
+    switch (campo) {
+        case 'email':
+            if (emailLogin.length < 4 || emailLogin.indexOf(' ') != -1 || emailLogin.indexOf('@') == -1 || emailLogin.indexOf('.com') == -1) {
+                inputEmailLogin.style.borderBottom = '2px solid red';
+            } else {
+                inputEmailLogin.style.borderBottom = '2px solid #0077ff';
+            }
+            break;
+
+        case 'senha':
+            if (senhaLogin.length < 5) {
+                inputSenha.style.borderBottom = '2px solid red';
+            } else {
+                inputSenha.style.borderBottom = '2px solid #0077ff';
+            }
+            break;
+
+        default:
+            alert('deu erro')
+            break;
+    }
+
+}
+
 function entrar() {
     aguardar();
     var formulario = new URLSearchParams(new FormData(form_login));
@@ -720,6 +872,38 @@ function mostrarSobreBanda() {
     } else {
         botaoLerMais.style.display = 'block';
         textoSobreBanda.style.display = '';
+    }
+}
+
+
+/* ---------------------------------------------------------------------------------- */
+/* Chamado */
+/* ---------------------------------------------------------------------------------- */
+
+function abrirChamado() {
+    var assuntoChamado = inputAssunto.value;
+    var msgChamado = inputMensagemChamado.value;
+    if (usuarioLogado == 1) {
+        if (assuntoChamado != "" || msgChamado != "") {
+            console.log("entrei!");
+            var formulario = new URLSearchParams(new FormData(form_chamado));
+            var idUsuario = Number(sessionStorage.getItem("id"));
+            fetch(`/chamados/publicar/${idUsuario}`, {
+                method: "POST",
+                body: formulario,
+            }).then((resposta) => {
+                if (resposta.ok) {
+                } else {
+                    alert("chamado feito");
+                    console.log("Erro ao publicar!");
+                    console.log(resposta);
+                }
+            });
+        } else {
+            alert("Informações inválidas");
+        }
+    } else {
+        alert("Faça login para abrir um chamado");
     }
 }
 

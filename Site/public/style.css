@@ -139,6 +139,15 @@ body{
     border-radius: 0 2px 2px;
 }
 
+.box-login .col-5{
+    display: flex;
+    align-items: center;
+}
+
+.box-login a{
+    color: #fff;
+}
+
 .box-login input:focus, .box-cadastro input:focus{
     transition: 0.3s;
     border-bottom: 2px solid #0077ff;
@@ -357,7 +366,7 @@ li #navbarLogado{
 }
 
 #playMusic{
-    position: sticky;
+    position: fixed;
     bottom: 0px;
     width: 100%;
     z-index: 2;
@@ -669,6 +678,19 @@ li #navbarLogado{
     /* border-top: #fff 1px solid; */
 }
 
+.footer li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.footer i{
+    font-size: 25px;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
 .footer input, .footer textarea{
     width: 80%;
     margin: 10px 0px 0px 0px;
@@ -895,6 +917,12 @@ li #navbarLogado{
     justify-content: center;
 }
 
+.spanExemplo{
+    font-size: 13px;
+    margin-left: 20px;
+    color: rgba(255, 255, 255, 0.404);
+}
+
 .box-cadastro{
     margin-top: 120px;
     background-color: rgba(0, 0, 0, 0.87);
@@ -904,6 +932,16 @@ li #navbarLogado{
     color: #fff;
     display: flex;
     flex-direction: column;
+}
+
+.box-cadastro a{
+    float: right;
+    color: #fff;
+}
+
+.box-cadastro .col-4{
+    display: flex;
+    align-items: center;
 }
 
 .box-cadastro h1{
@@ -918,7 +956,7 @@ li #navbarLogado{
 }  
 
 .box-cadastro button{
-    margin-top: 20px;
+    float: left;
     height: 40px;
     font-size: 20px;
     width: 10vw;

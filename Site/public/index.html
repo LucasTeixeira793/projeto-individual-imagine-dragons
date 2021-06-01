@@ -575,22 +575,43 @@
     <footer class="footer">
       <div class="copy">
         <div class="row">
-          <div class="col-3"></div>
-          <div class="col-3"></div>
+          <div class="col-6">
+            <h3>Obrigado por acessar meu site!</h3>
+            <br />
+            <span style="font-weight: bold">Entre em contato:</span><br /><br />
+            <ul>
+              <li>
+                <i class="fa fa-github" aria-hidden="true"></i> LucasTeixeira793
+              </li>
+              <li>
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                teixeiralucas793@gmail.com
+              </li>
+              <li>
+                <i class="fa fa-linkedin" aria-hidden="true"></i> Lucas Menezes
+                Teixeira
+              </li>
+              <li>
+                <i class="fa fa-instagram" aria-hidden="true"></i> @luc_teixeira
+              </li>
+            </ul>
+          </div>
           <div class="col-6">
             <h3>Entre em contato conosco:</h3>
-            <input type="text" placeholder="Assunto" /><br />
-            <textarea id="" cols="30" rows="5" placeholder="Mensagem"></textarea
-            ><br />
-            <button class="btn btn-padrao">Enviar</button>
+            <form mathod="post" id="form_chamado" onsubmit="return abrirChamado()">
+              <input type="text" id="inputAssunto" name="assunto" placeholder="Assunto" /><br />
+              <textarea id="inputMensagemChamado" cols="30" rows="5" name="mensagem" placeholder="Mensagem"></textarea
+              ><br />
+              <button type="submit" class="btn btn-padrao">Enviar</button>
+            </form>
           </div>
         </div>
         <div class="row">
           <div class="centralizar">
             <span
-              >copyright
+              >copyright ©
               <a href="https://github.com/LucasTeixeira793" target="_blank"
-                >Lucas Menezes Teixeira</a
+                >Lucas Menezes Teixeira, 2021</a
               ></span
             >
           </div>
@@ -630,10 +651,7 @@
 
     <!-- Scripts -->
     <div class="row display-flex" id="playMusic"></div>
-    <script
-      src="https://kit.fontawesome.com/47509d94ad.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/47509d94ad.js" crossorigin="anonymous"></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -11,6 +11,7 @@ var leiturasRouter = require('./routes/leituras');
 var comentariosRouter = require('./routes/comentarios');
 var curtidasRouter = require('./routes/curtidas');
 var avaliacaoRouter = require('./routes/avaliacoes');
+var chamadoRouter = require('./routes/chamados');
 
 var app = express();
 
@@ -26,5 +27,6 @@ app.use('/leituras', leiturasRouter);
 app.use('/comentarios', comentariosRouter);
 app.use('/curtidas', curtidasRouter);
 app.use('/avaliacoes', avaliacaoRouter);
+app.use('/chamados', chamadoRouter);
 
 module.exports = app;

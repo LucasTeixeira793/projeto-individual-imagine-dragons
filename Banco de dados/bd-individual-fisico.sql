@@ -26,7 +26,7 @@ create table Avaliacao(
     primary key(idAvaliacao,fkMusica,fkUser)
 );
 
-SELECT AVG(avaliacao) as media from avaliacao where fkMusica = 2;
+
 
 create table Comentario(
 	idComentario int primary key auto_increment,
@@ -45,17 +45,19 @@ create table Curtida(
     -- dataCurtida timestamp default current_timestamp,
     primary key(fkUser,fkComentario)
 );
--- drop table curtida;
-insert into curtida values
-    (2,3),
-    (3,3);
+
+create table Chamado (
+	idChamado int primary key auto_increment,
+    titulo varchar(40),
+    mensagem varchar(300),
+    fkUser int,
+    foreign key (fkUser) references Usuario(idUser)
+);
+
 select count(*) from curtida where fkComentario = 2 and fkUser = 1;
 SELECT count(*) FROM curtida WHERE fkComentario = 2;
-SELECT 
-    COUNT(*) as curtido FROM
-    Curtida WHERE 
-    fkUser = 1 and fkComentario = 2;
-
+SELECT COUNT(*) as curtido FROM Curtida WHERE fkUser = 1 and fkComentario = 2;
+SELECT AVG(avaliacao) as media from avaliacao where fkMusica = 2;
 
 select * from usuario;
 select * from avaliacao;
@@ -63,6 +65,7 @@ select * from curtida;
 select count(*) from curtida where fkUser = 1;
 select * from musica;
 select * from comentario;
+select * from chamado;
 
 
 insert into musica values
