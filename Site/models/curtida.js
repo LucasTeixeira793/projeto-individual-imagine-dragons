@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
 			field: 'fkUser',
 			type: DataTypes.INTEGER,
 			allowNull: false,
-			primaryKey: true,
+			primaryKey: true
 		},
 		fkComentario: {
 			field: 'fkComentario',

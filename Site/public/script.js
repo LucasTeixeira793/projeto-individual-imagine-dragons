@@ -72,7 +72,7 @@ var navbarUserLogado = `
 `;
 
 var comentariosLogado = `
-<div class="comentarios-cabecalho">
+        <div class="comentarios-cabecalho">
             <div class="row">
                 <div class="col-1">
                     <i class="fa fa-times" onclick="abrirComentario()" id="idFecharComentarios" aria-hidden="true"></i>
@@ -85,10 +85,10 @@ var comentariosLogado = `
         <div class="comentarios_conteudo" id="comentarios_conteudo">
         </div>
         <div class="comentarios-rodape">
-        <form id="form_publicar" method="post" onsubmit="return publicar()">
-            <div class="row">
+            <form id="form_publicar" method="post" onsubmit="return publicar()">
+                <div class="row">
                     <div class="col-10">
-                        <input type="text" name="inputComentario" placeholder="Digite seu comentário aqui...">
+                        <input type="text" name="inputComentario" id="inputComentario" placeholder="Digite seu comentário aqui...">
                     </div>
                     <div class="col-2 display-flex">
                         <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
@@ -583,6 +583,21 @@ function entrar() {
 
     function finalizar_sessao() {
         fetch(`/usuarios/sair/${login_usuario}`, {cache:'no-store'}); 
+    }
+
+
+/* ---------------------------------------------------------------------------------- */
+/* SOBRE */
+/* ---------------------------------------------------------------------------------- */
+
+    function mostrarSobreBanda(){
+        if(textoSobreBanda.style.display == ''){
+            textoSobreBanda.style.display = 'block';
+            botaoLerMais.style.display = 'none';            
+        }else{
+            botaoLerMais.style.display = 'block';            
+            textoSobreBanda.style.display = '';
+        }
     }
 
 

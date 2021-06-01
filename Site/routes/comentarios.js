@@ -1,19 +1,31 @@
 var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
-var Comentario = require('../models').Comentario;
+var Comentario = require('../models').comentarios;
+var Curtida = require('../models').Curtida;
 
 /* ROTA QUE RECUPERA CRIA UMA PUBLICAÇÃO */
-router.post('/', function(req, res, next) {
+router.post('/publicar/:idUser/:idMusica', function(req, res, next) {
     console.log("Iniciando Publicação...")
     
-	let idUser = sessionStorage.getItem('id');
+	let idUser = req.params.idUser;
+    let idMusica = req.params.idMusica;
+    let comentario = req.body.inputComentario;
+    
+    let instrucaoSql = `INSERT 
+    INTO comentario 
+    VALUES
+	(null, 
+        '${comentario}',
+        ${idUser},
+        ${idMusica}
+    )`;
 
-    Comentario.create({
-        comentario: req.body.inputComentario,
-        fkUsuer: idUser,
-		fkMusica : 1
-    }).then(resultado => {
+    sequelize.query(instrucaoSql, {
+		model: Comentario,
+		mapToModel: true 
+	})
+    .then(resultado => {
         console.log("Post realizado com sucesso!!");
         res.send(resultado);
     }).catch(erro => {
@@ -40,17 +52,6 @@ router.get('/:musicota', function(req, res, next) {
     WHERE fkMusica = ${musica} 
     GROUP BY idComentario 
     ORDER BY idComentario DESC`;
-    // let instrucaoSql = `SELECT 
-    // usuario.nickname,
-    // idComentario,
-    // comentario
-    // FROM usuario
-    // INNER JOIN comentario
-    // ON idUser = fkUser
-    // INNER JOIN Curtida
-    // ON 
-    // WHERE fkMusica = ${musica}
-    // ORDER BY idComentario DESC`;
 
 	sequelize.query(instrucaoSql, {
 		model: Comentario,
@@ -65,33 +66,5 @@ router.get('/:musicota', function(req, res, next) {
 	});
 });
 
-
-/* ROTA QUE RECUPERA AS PUBLICAÇÕES DE UM USUÁRIO PELO ID */
-// router.get('/:idUsuario', function(req, res, next) {
-    
-//     var idUsuario = req.params.idUsuario;
-// 	console.log('Recuperando todas as publicações id: ' + idUsuario);
-
-//     let instrucaoSql = `SELECT 
-//     nickname,
-//     comentario
-//     FROM usuario
-//     INNER JOIN comentario
-//     ON fkUser = idUser
-//     WHERE fkMusica = ${idUsuario}
-//     ORDER BY idComentario DESC`;
-
-// 	sequelize.query(instrucaoSql, {
-// 		model: Comentario,
-// 		mapToModel: true 
-// 	})
-// 	.then(resultado => {
-// 		console.log(`Encontrados: ${resultado.length}`);
-// 		res.json(resultado);
-// 	}).catch(erro => {
-// 		console.error(erro);
-// 		res.status(500).send(erro.message);
-// 	});
-// });
 
 module.exports = router;

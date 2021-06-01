@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Usuario = require('../models').Usuario;
-var comentario = require('../models').Comentario;
+var Comentario = require('../models').Comentario;
 
 let sessoes = [];
 
@@ -107,5 +107,7 @@ router.get('/', function(req, res, next) {
 		res.status(500).send(erro.message);
   	});
 });
+
+
 
 module.exports = router;

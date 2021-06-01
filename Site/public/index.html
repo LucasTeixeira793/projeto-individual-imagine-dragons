@@ -438,8 +438,24 @@
     </a>
 
     <!-- Footer -->
-    <footer class="footer">
-        <span>copyright <a href="https://github.com/LucasTeixeira793" target="_blank">Lucas Menezes Teixeira</a></span>
+    <footer class="footer ">
+        <div class="copy">
+            <div class="row">
+                <div class="col-3"></div>
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <h3>Entre em contato conosco:</h3>
+                    <input type="text" placeholder="Assunto"><br>
+                    <textarea id="" cols="30" rows="5" placeholder="Mensagem"></textarea><br>
+                    <button class="btn btn-padrao">Enviar</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="centralizar">
+                    <span>copyright <a href="https://github.com/LucasTeixeira793" target="_blank">Lucas Menezes Teixeira</a></span>
+                </div>
+            </div>
+        </div>
     </footer>
 
     <!-- Modal Perfil -->
@@ -483,23 +499,30 @@
     function publicar() {
         console.log("entrei!")
         var formulario = new URLSearchParams(new FormData(form_publicar));
-        var idUsuario = sessionStorage.getItem('id');
-        fetch("/comentarios", {
-            method: "POST",
-            body: formulario
-        }).then(resposta => {
+        var idUsuario = Number(sessionStorage.getItem('id'));
+        
+        if(inputComentario.value == ""){
+            alert("Escreva um comentário");
+        }else{
+            fetch(`/comentarios/publicar/${idUsuario}/${numMusicaAtiva}`, {
+                method: "POST",
+                body: formulario
+            }).then(resposta => {
+    
+                if (resposta.ok) {
+                    inputComentario.value = "";
+                    obterPublicacoes();
+    
+                } else {
+                    console.log('Erro ao publicar!');
+                    console.log(resposta)
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            });
+        }
 
-            if (resposta.ok) {
-                obterPublicacoes();
-
-            } else {
-                console.log('Erro ao publicar!');
-                console.log(resposta)
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-        });
 
         return false;
     }
@@ -554,12 +577,8 @@
 
 
 
-
-
-
-
     function curtir(idComentario) {
-        fetch(`/curtidas/${idComentario}`)
+        fetch(`/curtidas/curtir`)
         .then(resposta => {
             if (resposta.ok) {
                 resposta.json().then(function (resposta) {
@@ -579,7 +598,5 @@
         });
 
     }
-
-    // verificar_autenticacao();
 
 </script>
