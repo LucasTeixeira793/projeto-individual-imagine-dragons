@@ -2,9 +2,8 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
 var Comentario = require('../models').comentarios;
-var Curtida = require('../models').Curtida;
 
-/* ROTA QUE RECUPERA CRIA UMA PUBLICAÇÃO */
+// /* ROTA QUE RECUPERA CRIA UMA PUBLICAÇÃO */
 router.post('/publicar/:idUser/:idMusica', function(req, res, next) {
     console.log("Iniciando Publicação...")
     

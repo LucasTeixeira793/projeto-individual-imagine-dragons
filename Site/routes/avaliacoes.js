@@ -1,21 +1,24 @@
 var express = require('express');
 var router = express.Router();
 var sequelize = require('../models').sequelize;
-var Avaliacao = require('../models').Avaliacao;
+var Avaliacao = require('../models').avaliacoes;
 
-/* ROTA QUE RECUPERA CRIA UMA CURTIDA */
-router.get('/curtir/:idUser/:idComentario', function(req, res, next) {
-    console.log("Iniciando Curtida...")
+/* ROTA QUE RECUPERA CRIA UMA AVALIACAO */
+router.get('/cadastrar/:idMusicaCad/:idUserCad/:numAvaliacao', function(req, res, next) {
+    console.log("\nIniciando Avaliacao...")
     
-    let idComentario = req.params.idComentario;
-    console.log(idComentario);
-	let idUser = req.params.idUser;
+    let idMusica = req.params.idMusicaCad;
+    console.log(idMusica);
+	let idUser = req.params.idUserCad;
     console.log(idUser);
+    let avaliacao = req.params.numAvaliacao;
+    console.log(avaliacao);
 
-    var instrucaoSql = `INSERT INTO curtida VALUE (${idUser}, ${idComentario})`;
+    var instrucaoSql = `INSERT INTO avaliacao (idAvaliacao, fkUser, fkMusica, avaliacao) VALUE 
+    (null, ${idUser}, ${idMusica}, ${avaliacao})`;
 
     sequelize.query(instrucaoSql, {
-		model: Curtida,
+		model: Avaliacao,
 		mapToModel: true 
 	}).then(resultado => {
         console.log("Curtida realizada com sucesso!!");
@@ -27,19 +30,14 @@ router.get('/curtir/:idUser/:idComentario', function(req, res, next) {
     })
 })
 
-router.get('/:idUser/:idComentario', function(req, res, next) {
-	console.log('Verificando se o usuario ja curtiu esse comentario');
-	let idUser = req.params.idUser;
-    let idComentario = req.params.idComentario;
+router.get('/:idMusica', function(req, res, next) {
+	console.log('Verificando curtidas na música');
+	let idMusica = req.params.idMusica;
 
-    var instrucaoSql = `SELECT 
-    COUNT(*) as curtido FROM
-    Curtida WHERE 
-    fkUser = ${idUser} AND 
-    fkComentario = ${idComentario}`;
+    var instrucaoSql = `SELECT AVG(avaliacao) AS media FROM avaliacao WHERE fkMusica = ${idMusica}`;
 
 	sequelize.query(instrucaoSql, {
-		model: Curtida,
+		model: Avaliacao,
 		mapToModel: true 
 	})
 	.then(resultado => {

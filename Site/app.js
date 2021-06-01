@@ -10,6 +10,7 @@ var usuariosRouter = require('./routes/usuarios');
 var leiturasRouter = require('./routes/leituras');
 var comentariosRouter = require('./routes/comentarios');
 var curtidasRouter = require('./routes/curtidas');
+var avaliacaoRouter = require('./routes/avaliacoes');
 
 var app = express();
 
@@ -24,5 +25,6 @@ app.use('/usuarios', usuariosRouter);
 app.use('/leituras', leiturasRouter);
 app.use('/comentarios', comentariosRouter);
 app.use('/curtidas', curtidasRouter);
+app.use('/avaliacoes', avaliacaoRouter);
 
 module.exports = app;

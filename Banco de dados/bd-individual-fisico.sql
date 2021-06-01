@@ -16,14 +16,17 @@ create table Musica(
 );
 
 create table Avaliacao(
+	idAvaliacao int auto_increment, 
 	fkMusica int,
     foreign key (fkMusica) references Musica(idMusica),
     fkUser int,
     foreign key (fkUser) references Usuario(idUser),
-    dataAvaliacao timestamp default current_timestamp,
+    dataAvaliacao TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     avaliacao int,
-    primary key(fkMusica,fkUser,dataAvaliacao)
+    primary key(idAvaliacao,fkMusica,fkUser)
 );
+
+SELECT AVG(avaliacao) as media from avaliacao where fkMusica = 2;
 
 create table Comentario(
 	idComentario int primary key auto_increment,
@@ -43,25 +46,25 @@ create table Curtida(
     primary key(fkUser,fkComentario)
 );
 -- drop table curtida;
-insert into curtida value(1,2);
-select * from curtida;
+insert into curtida values
+    (2,3),
+    (3,3);
+select count(*) from curtida where fkComentario = 2 and fkUser = 1;
+SELECT count(*) FROM curtida WHERE fkComentario = 2;
+SELECT 
+    COUNT(*) as curtido FROM
+    Curtida WHERE 
+    fkUser = 1 and fkComentario = 2;
+
 
 select * from usuario;
+select * from avaliacao;
+select * from curtida;
+select count(*) from curtida where fkUser = 1;
 select * from musica;
 select * from comentario;
 
-insert into comentario values
-	(null, 'Essa música é perfeita :)', 1, 1);
-insert into comentario values
-	(null, 'A letra dessa música machuca muito, mas mesmo assim é incrivel',1, 4);
-insert into comentario values
-	(null, 'Teste coment',1, 3);
-insert into comentario values
-	(null, 'Teste coment2',1, 3);
-insert into comentario values
-	(null, 'Teste coment3',2, 3);
-    
-    
+
 insert into musica values
 	(null,'Radioactive','Night Visions'),
     (null,'Demons','Night Visions'),
