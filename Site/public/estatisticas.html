@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BT">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Imagine Dragons</title>
+    <link
+      rel="stylesheet"
+      href="path/to/font-awesome/css/font-awesome.min.css"
+    />
+    <link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="bg-estatistica" onload="recuperarEstatisticas()">
+    <!-- Header -->
+    <header class="header" id="header"></header>
+
+        <div class="section-estatisticas">
+          <div class="box-estatisticas">
+            <div>
+                <h3>Músicas com maiores médias de avaliações</h3><br>
+                <canvas id="myChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+
+    <section id="sectionModalPerfil">
+      <div class="modalPerfil">
+        <div class="row cabecalhoModal">
+          <div class="col-11">
+            <span>Olá </span
+            ><span id="nomeUserModal" class="spanDestaqueModal"
+              >Lucas Teixeira</span
+            >
+          </div>
+          <div class="col-1">
+            <center>
+              <button onclick="esconderPerfil()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+              </button>
+            </center>
+          </div>
+        </div>
+        <hr />
+        <div class="corpoModal">
+          <span class="spanDestaqueModal">ID: </span>
+          <span id="idUserModal"></span><br />
+          <span class="spanDestaqueModal">Email: </span>
+          <span id="emailUserModal"></span><br />
+          <span class="spanDestaqueModal">Nickname: </span>
+          <div><span>@</span><span id="nicknameUserModal"></span><br /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scripts -->
+    <div class="row display-flex" id="playMusic"></div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+      src="https://kit.fontawesome.com/47509d94ad.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<script>
+
+    function recuperarEstatisticas(){
+        fetch(`/musicas`)
+        .then((resposta) => {
+            if (resposta.ok) {
+                resposta.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    graficoMusica(resposta)
+                });
+            } else {
+                console.error("Nenhum dado encontrado ou erro na API");
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção das publicações: ${error.message}`);
+        });
+    }
+
+    function graficoMusica(dados){
+        const labels = [];
+        const numAvaliacoes = [];
+        const cores = [];
+        dados = dados[0];
+        for(var contador = 0; contador < dados.length; contador++){
+            labels.push(dados[contador].nomeMusica);
+            numAvaliacoes.push(dados[contador].media);
+            if(dados[contador].album == "Night Visions"){
+                cores.push('#6b4756');
+            }else if(dados[contador].album == "Smoke and Mirrors"){
+                cores.push('#ff9900');
+            }else if(dados[contador].album == "Evolve"){
+                cores.push('#163343');
+            }else{
+                cores.push('#217221');
+            }
+        }
+        const data = {
+          labels: labels,
+          datasets: [
+            {
+              label: "Melhores avaliações",
+              backgroundColor: cores,
+              borderColor: cores,
+              data: numAvaliacoes,
+            },
+          ],
+        };
+      
+        const config = {
+          type: "bar",
+          data,
+          options: {},
+        };
+      
+        var myChart = new Chart(document.getElementById("myChart"), config);
+    }
+</script>

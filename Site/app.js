@@ -12,6 +12,7 @@ var comentariosRouter = require('./routes/comentarios');
 var curtidasRouter = require('./routes/curtidas');
 var avaliacaoRouter = require('./routes/avaliacoes');
 var chamadoRouter = require('./routes/chamados');
+var musicaRouter = require('./routes/musicas');
 
 var app = express();
 
@@ -28,5 +29,6 @@ app.use('/comentarios', comentariosRouter);
 app.use('/curtidas', curtidasRouter);
 app.use('/avaliacoes', avaliacaoRouter);
 app.use('/chamados', chamadoRouter);
+app.use('/musicas',musicaRouter);
 
 module.exports = app;

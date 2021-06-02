@@ -1018,6 +1018,33 @@ li #navbarLogado{
 
 /* Fim Modal Perfil */
 
+/* Estatísticas */
+
+.bg-estatistica{
+    background-image: url('img/banners/estatisticas.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+}
+
+.section-estatisticas{
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+.box-estatisticas{
+    min-width: 60%;
+    background-color: rgba(0, 0, 0, 0.87);
+    padding: 40px;
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Fim Estatísticas */
+
 
 /* ---------------------------------------------------------------------------------- */
 /* GRID */

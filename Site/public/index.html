@@ -655,3 +655,34 @@
     <script src="script.js"></script>
   </body>
 </html>
+
+<script>
+alterarComentarios(usuarioLogado);
+function abrirComentario() {
+    if (comentarioAtivo == 0) {
+        sessaoComentarios.style.display = "block";
+        // musicaComentario.innerHTML = nomeMusica;
+        sessaoComentarios.style.right = "0";
+        comentarioAtivo = 1;
+    } else {
+        fecharComentario();
+    }
+}
+
+function fecharComentario() {
+    sessaoComentarios.style.right = "-500px";
+    comentarioAtivo = 0;
+}
+
+function alterarComentarios(toggle) {
+
+    if (toggle == 1) {
+        comentarios = comentariosLogado;
+
+    } else {
+        comentarios = comentariosDeslogado;
+    }
+    sessaoComentarios.innerHTML = comentarios;
+}
+
+</script>

@@ -64,6 +64,7 @@ var navbarUserLogado = `
     <li><a href="index.html#albuns">Álbuns</a></li>
     <li><a href="index.html#novidades">Notícias</a></li>
     <li><a href="sobre.html">Sobre</a></li>
+    <li><a href="estatisticas.html">Estatísticas</a></li>
 
     <!-- Logado -->
     <li id="navbarLogado" style="font-family: Monserrat; cursor: pointer;"><b onclick="mostrarPerfil()">Perfil</b></li>
@@ -126,7 +127,7 @@ var comentariosDeslogado = `
 /* ---------------------------------------------------------------------------------- */
 
 alterarNavbar(usuarioLogado);
-alterarComentarios(usuarioLogado);
+
 
 function stopMusic() {
     playMusic.innerHTML = "";
@@ -477,33 +478,6 @@ function verMaisNoticias() {
 /* ---------------------------------------------------------------------------------- */
 var comentarios;
 
-function abrirComentario() {
-    if (comentarioAtivo == 0) {
-        sessaoComentarios.style.display = "block";
-        // musicaComentario.innerHTML = nomeMusica;
-        sessaoComentarios.style.right = "0";
-        comentarioAtivo = 1;
-    } else {
-        fecharComentario();
-    }
-}
-
-function fecharComentario() {
-    sessaoComentarios.style.right = "-500px";
-    comentarioAtivo = 0;
-}
-
-function alterarComentarios(toggle) {
-
-    if (toggle == 1) {
-        comentarios = comentariosLogado;
-
-    } else {
-        comentarios = comentariosDeslogado;
-    }
-    sessaoComentarios.innerHTML = comentarios;
-}
-
 function publicar() {
     console.log("entrei!");
     var formulario = new URLSearchParams(new FormData(form_publicar));
@@ -844,16 +818,16 @@ function logoff() {
 
 function validar_sessao() {
     fetch(`/usuarios/sessao/${login_usuario}`, { cache: 'no-store' })
-        .then(resposta => {
-            if (resposta.ok) {
-                resposta.text().then(texto => {
-                    console.log('Sessão :) ', texto);
-                });
-            } else {
-                console.error('Sessão :.( ');
-                logoff();
-            }
-        });
+    .then(resposta => {
+        if (resposta.ok) {
+            resposta.text().then(texto => {
+                console.log('Sessão :) ', texto);
+            });
+        } else {
+            console.error('Sessão :.( ');
+            logoff();
+        }
+    });
 }
 
 function finalizar_sessao() {
@@ -916,7 +890,8 @@ function curtir(idComentario) {
     console.log("entrei!");
     var idUsuario = Number(sessionStorage.getItem("id"));
 
-    fetch(`/curtidas/curtir/${idUsuario}/${idComentario}`).then((resposta) => {
+    fetch(`/curtidas/curtir/${idUsuario}/${idComentario}`)
+    .then((resposta) => {
         if (resposta.ok) {
             obterPublicacoes();
             alert("Deu Bom");
