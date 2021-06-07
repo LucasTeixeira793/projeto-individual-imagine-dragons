@@ -64,7 +64,7 @@ var navbarUserLogado = `
     <li><a href="index.html#albuns">Álbuns</a></li>
     <li><a href="index.html#novidades">Notícias</a></li>
     <li><a href="sobre.html">Sobre</a></li>
-    <li><a href="estatisticas.html">Estatísticas</a></li>
+    <li><a href="estatisticas.html">Ranking</a></li>
 
     <!-- Logado -->
     <li id="navbarLogado" style="font-family: Monserrat; cursor: pointer;"><b onclick="mostrarPerfil()">Perfil</b></li>
@@ -89,7 +89,7 @@ var comentariosLogado = `
             <form id="form_publicar" method="post" onsubmit="return publicar()">
                 <div class="row">
                     <div class="col-10">
-                        <input type="text" name="inputComentario" id="inputComentario" placeholder="Digite seu comentário aqui...">
+                        <input type="text" name="inputComentario" id="inputComentario" maxlength="200" placeholder="Digite seu comentário aqui...">
                     </div>
                     <div class="col-2 display-flex">
                         <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
